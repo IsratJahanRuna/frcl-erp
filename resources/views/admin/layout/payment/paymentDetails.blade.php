@@ -44,9 +44,9 @@
                                     </div>
                                     <div class="card-tools mr-n1">
                                         <ul class="btn-toolbar gx-1">
-                                            
+
                                             <li>
-                                            
+
                                             <form method="post" action="{{route('payment.search')}}">
                                             @csrf
                                                 <div class="row g-gs">
@@ -69,11 +69,11 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="form-label" for="fv-topics">Division </label >
-                                                            <div class="form-control-wrap ">
-                                                                <select id="districtName" id="fv-topics" name="division" data-placeholder="Select a option"> <span style="top:-5px; color:red;">*</span reqired>
+                                                            <div class="form-control-wrap">
+                                                                <select id="districtName" id="fv-topics" name="division" data-placeholder="Select a option"> <span style=" color:red;">*</span reqired>
                                                                 <option value="">Select a Option</option>
-                                                                    @foreach($pay as $payment)
-                                                                        <option value="{{ $payment->id }}">{{ $payment->distributor->division }} </option>
+                                                                    @foreach($divisions as $division)
+                                                                        <option value="{{ $division->id }}">{{ $division->name }} </option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -87,7 +87,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </form>
                                             </li>
@@ -120,7 +120,7 @@
                                         <div class="nk-tb-col"><span>Remarks</span></div>
                                         <div class="nk-tb-col"><span>Edit</span></div>
                                         <div class="nk-tb-col nk-tb-col-tools">
-                                        
+
                                         </div>
                                     </div><!-- .nk-tb-item -->
 
@@ -142,12 +142,15 @@
                                                 {{ $newDate }}
                                             </a></span>
                                         </div>
+                                        {{-- @dd($payment->distributor->bases->name) --}}
                                         <div class="nk-tb-col tb-col-md">
                                             <span class="tb-sub">
-                                                {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($payment->distributor->base)->name }}
+                                                {{$payment->distributor->divisions->name }},
+                                             {{$payment->distributor->zones->name }},
+                                             {{$payment->distributor->bases->name }}
                                             </span>
                                         </div>
-                                        
+
                                         <div class="nk-tb-col tb-col-sm">
                                             <span class="tb-sub">
                                             {{ $payment->distributor->distributor_name }}
@@ -185,7 +188,7 @@
                                         </div>
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
-                                                
+
                                                 <li>
                                                     <div class="drodown mr-n1">
                                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
@@ -204,7 +207,7 @@
                                     @endif
                                 </div><!-- .nk-tb-list -->
                             </div><!-- .card-inner -->
-                           
+
                             <div class="card-inner">
                                 <ul class="pagination justify-content-center justify-content-md-start">
                                     <li class="page-item"><a class="page-link" href="#">Prev</a></li>
@@ -243,7 +246,7 @@
         $("#districtName").select2({
         });
 
-        
+
 </script>
 
 @endsection

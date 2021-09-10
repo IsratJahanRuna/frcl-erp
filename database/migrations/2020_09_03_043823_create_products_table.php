@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->string('bar_code')->nullable();
             $table->string('product_code')->nullable();
             $table->string('image')->nullable();
+            $table->integer('ctn_number')->nullable();
             $table->text('description')->nullable();
             $table->boolean('status')->default(1);
             $table->string('unique_id')->nullable();

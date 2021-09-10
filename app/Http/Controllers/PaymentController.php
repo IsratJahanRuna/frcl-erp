@@ -47,7 +47,7 @@ class PaymentController extends Controller
             $attachment->move('public/assets/images/payment',$file_name);
         }
 
-        //Transaction 
+        //Transaction
         if($request->payment_method == "Cash")
         {
             $new_transaction_id = 'Cash' . "." . date('Ymd') . "." . $request->distributor_id . ".". $request->transaction_id;
@@ -61,7 +61,7 @@ class PaymentController extends Controller
         else{
             $new_transaction_id = 'others_' . "." . date('Ymd') . "." . $request->distributor_id . ".". $request->transaction_id;
         }
-        
+
 
             if(Payment::where('distributor_id',$request->distributor_id)->exists())
                 {
@@ -97,11 +97,11 @@ class PaymentController extends Controller
                         'mobile'=>$request->mobile,
                         'user_id'=>auth()->user()->id
                         ]);
-                        
+
                 }
 
             else{
-           
+
                 $create_payment = Payment::create([
                         'distributor_id'=>$request->distributor_id,
                         'date'=>$request->date,
@@ -145,25 +145,25 @@ class PaymentController extends Controller
                         'distributor_payment' => $data->distributor_payment+$request->amount,
                         ]);
                     }
-                
-                }   
+
+                }
             // $client = new SendSingleTextualSms(new BasicAuthConfiguration('FirstRays','info@FRCL20'));
 
             // $requestBody = new SMSTextualRequest();
-    
+
             // $requestBody->setFrom('First Rays');
             // $requestBody->setTo('+88'.$request->mobile);
             // $requestBody->setText("Use as One Time Password to continue with www.firstrays.com.bd");
-        
+
             // $response = $client->execute($requestBody);
-    
+
             //     dd($response);
-    
+
             // dd($requestBody);
 
 
              return redirect()->route('payment.details');
-   
+
 
     }
 
@@ -201,7 +201,7 @@ class PaymentController extends Controller
         else{
             $new_transaction_id = 'others_' . "." . date('Ymd') . "." . $request->distributor_id . ".". $request->transaction_id;
         }
-        
+
 
         if(Payment::where('distributor_id',$request->distributor_id)
                     ->exists())
@@ -212,7 +212,7 @@ class PaymentController extends Controller
                             ->update([
                         'amount' => $data->amount+$request->amount,
                     ]);
-            
+
         }
 
         Payment::where('id',$id)->update([
@@ -250,7 +250,7 @@ class PaymentController extends Controller
                 ]);
 
 
-        return redirect()->route('payment.details')->with('msg','Payment Information Updated Successfully'); 
+        return redirect()->route('payment.details')->with('msg','Payment Information Updated Successfully');
     }
 
     public function orderValidation()
@@ -272,16 +272,19 @@ class PaymentController extends Controller
     {
         $from = Carbon::parse($request->from)->startOfDay()->toDateTimeString();
         $to = Carbon::parse($request->to)->endOfDay()->toDateTimeString();
-        // dd($from);
-        $payments = Payment::whereBetween('created_at', [$from, $to])
-                            ->orWhere('division' , $request->division)
-                            ->get();
+// dd($request->division);
 
+        $payments = Payment::whereBetween('created_at', [$from, $to])
+                            ->Where('division' , $request->division)
+                            ->get();
+// dd($payments);
         $divisions = Division::all();
         $distributors = Distributor::where('active' , 1)->get();
-        $pay = Payment::all();
+        // $pay = Payment::where('division');
+
+
         // dd($payments);
-        return view('admin.layout.payment.paymentDetails' , compact('payments' , 'divisions' , 'distributors' , 'pay'));
+        return view('admin.layout.payment.paymentDetails' , compact('payments' , 'divisions' , 'distributors'));
     }
 
     public function customerStatement()
@@ -315,7 +318,7 @@ class PaymentController extends Controller
             'date' => 'required|before:today',
         ]);
 
-        
+
         $file_name = null;
         if($request->hasFile('attachment'))
         {
@@ -339,7 +342,7 @@ class PaymentController extends Controller
             Payment::where('distributor_id',$request->distributor_id)->where('deposite_account',$request->deposite_account)->update([
                 'amount' => $data->amount+$request->amount,
             ]);
-            
+
         }
         else{
             DB::beginTransaction();
@@ -369,22 +372,22 @@ class PaymentController extends Controller
                         'attachment'=>$file_name,
                         'remarks'=>$request->remarks,
                         ]);
-            
+
                         DB::commit();
                         Toastr::success('Payment Information Added Successfully', 'Title');
                         return redirect()->route('payment.add');
-            
-                    }catch(Throwable $ex){ 
-                        
+
+                    }catch(Throwable $ex){
+
                         DB::rollBack();
                         dd($ex->getMessage());
-                       
+
                         Toastr::error('Error', 'Title', [ "positionClass"=> "toast-bottom-right" , "closeButton"=> true, "progressBar"=> true,]);
-                        return redirect()->back();   
-            
+                        return redirect()->back();
+
                     }
       }
-        return redirect()->back()->with('msg','Payment Added Successfully'); 
+        return redirect()->back()->with('msg','Payment Added Successfully');
     }
 
     public function distributorCommisionBalance()

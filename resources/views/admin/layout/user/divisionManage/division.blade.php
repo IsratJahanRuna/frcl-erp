@@ -28,7 +28,7 @@
                         @if(Session::has('msg'))
                             <p class="alert alert-success">{{ Session::get('msg') }}</p>
                         @endif
-                        
+
 
                         <h3 class="nk-block-title page-title">Division List</h3>
                         </div><!-- .nk-block-head-content -->
@@ -120,15 +120,31 @@
                                             </span>
                                         </td>
                                         @endif
+
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
-                                                
+                                                <li>
+                                                    <div class="drodown">
+                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <ul class="link-list-opt no-bdr">
+
+                                                            <!-- @if(Auth::user()->role == "Admin")
+                                                                <li><a href="#"><em class="icon ni ni-truck"></em><span>Mark as Delivered</span></a></li>
+                                                            @endif -->
+
+                                                                <li><a href="{{route('user.zone', $division->id)}}"><em class="icon ni ni-eye"></em><span>View Zones</span></a></li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr><!-- .nk-tb-item  -->
-                                    
-                                   
-                                    
+
+
+
                                     @endforeach
                                 </tbody>
                             </table>

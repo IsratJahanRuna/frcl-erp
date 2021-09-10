@@ -36,8 +36,8 @@ class ProductController extends Controller
     public function productSearch(Request $request)
     {
         $from = Carbon::parse($request->from)->startOfDay()->toDateTimeString();
-        $to = Carbon::parse($request->to)->endOfDay()->toDateTimeString(); 
-        
+        $to = Carbon::parse($request->to)->endOfDay()->toDateTimeString();
+
         $products = Product::where('sub_category_id', $request->sub_category_id)
                             ->orWhere('id', $request->product_id)
                             ->get();
@@ -46,7 +46,7 @@ class ProductController extends Controller
         // $products = Product::with('category')->orderBy('id' , 'DESC')->get();
 
         $categories = Category::all();
-        
+
         return view('admin.layout.product.productList' , compact('products' , 'categories' ));
     }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
         {
 
         $checkExist = Product::where('category_id',$get_parent->parent->id)->orderBy('id','desc')->first();
-           
+
         if(!empty($checkExist))
             {
                 $new_product_id = $checkExist->unique_id+1;
@@ -81,12 +81,12 @@ class ProductController extends Controller
             {
                 $new_product_id = 3000;
             }
-            
+
         }
         else if($get_parent->parent->name == "Light")
         {
             $checkExist = Product::where('category_id',$get_parent->parent->id)->orderBy('id','desc')->first();
-           
+
             if(!empty($checkExist))
                 {
                     $new_product_id=$checkExist->unique_id+1;
@@ -94,7 +94,7 @@ class ProductController extends Controller
                 {
                     $new_product_id=1000;
                 }
-                
+
         }
         else
         {
@@ -108,7 +108,7 @@ class ProductController extends Controller
             }
         }
 
-   
+
 
         DB::beginTransaction();
         try{
@@ -127,12 +127,13 @@ class ProductController extends Controller
                 'bar_code'=>$request->bar_code,
                 'product_code'=>$request->product_code,
                 'image'=>$file_name,
+                'ctn_number'=>$request->ctn_number,
                 'description'=>$request->description,
                 'unique_id'=>$new_product_id,
                 'user_id' => $user_id,
-                
+
             ]);
-            
+
             Stock::create([
                 'product_id' => $new_product->id,
                 'sub_category_id' =>$request->sub_category_id,
@@ -140,19 +141,19 @@ class ProductController extends Controller
                 'stock' => 0,
                 'alert_quantity'=>$request->alert_quantity,
             ]);
-            
+
             // dd($user_id);
-            
+
             DB::commit();
             Toastr::success('Product Information Added Successfully', 'Title');
             return redirect()->route('product.list');
 
-        }catch(Throwable $ex){ 
-            
+        }catch(Throwable $ex){
+
             DB::rollBack();
-           
+
             Toastr::error('Error', 'Title', [ "positionClass"=> "toast-bottom-right" , "closeButton"=> true, "progressBar"=> true,]);
-            return redirect()->back();  
+            return redirect()->back();
         }
 
     }
@@ -178,7 +179,7 @@ class ProductController extends Controller
         {
             $file_name = $data['image'];
         }
-        
+
         Product::where('id',$id)->update([
             'name'=>$request->name,
             'sub_category_id'=>$request->sub_category_id,
@@ -189,17 +190,18 @@ class ProductController extends Controller
             'bar_code'=>$request->bar_code,
             'product_code'=>$request->product_code,
             'image'=>$file_name,
+            'ctn_number'=>$request->ctn_number,
             'description'=>$request->description,
             'status'=>$request->status,
         ]);
 
-        return redirect()->route('product.list')->with('msg','Product Information Updated Successfully'); 
+        return redirect()->route('product.list')->with('msg','Product Information Updated Successfully');
     }
 
     // public function delete($id)
     // {
     //     $product = Product::find($id)->first();
-        
+
     //     $products = Product::where('sub_category_id', $id)->count();
     //     if($products > 0){
     //      return Redirect::to('admin.layout.product.productList')
@@ -212,10 +214,10 @@ class ProductController extends Controller
     //                 ->with('message', 'Category Deleted');
     //     }
 
-    //     if(file_exists('public/assets/images/product/'.$product->image) AND !empty($product->image)){ 
+    //     if(file_exists('public/assets/images/product/'.$product->image) AND !empty($product->image)){
     //         unlink('public/assets/images/product/'.$product->image);
-    //      } 
-        
+    //      }
+
     //     $product ->delete();
     //     return redirect()->route('product.list')->with('msg','Product Information Deleted Successfully');
     // }

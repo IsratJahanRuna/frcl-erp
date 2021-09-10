@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Devfaysal\BangladeshGeocode\Models\Upazila;
+use Devfaysal\BangladeshGeocode\Models\District;
+use Devfaysal\BangladeshGeocode\Models\Division;
 
 class Distributor extends Model
 {
@@ -30,10 +33,10 @@ class Distributor extends Model
     'image_trade' ,
     'image_nid' ,
     'image_form' ,
-    'random_number' , 
+    'random_number' ,
     'comment',
     'distributor_payment',
-    'total_money']; 
+    'total_money'];
 
     public function payment()
     {
@@ -49,5 +52,17 @@ class Distributor extends Model
     {
         return $this->hasMany(Order::class);
     }
-    
+
+    public function bases(){
+        return $this->belongsTo(Upazila::class, 'base', 'id');
+    }
+
+    public function zones(){
+        return $this->belongsTo(district::class, 'zone', 'id');
+    }
+    public function divisions(){
+        return $this->belongsTo(Division::class, 'division', 'id');
+    }
+
+
 }
