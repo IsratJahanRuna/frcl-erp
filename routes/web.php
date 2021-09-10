@@ -66,6 +66,14 @@ Route::group(['prefix'=>'admin'], function()
     Route::get('/role/delete/{id}' , 'RoleController@delete')->name('role.delete');
     Route::post('/role/active/{id}' , 'RoleController@roleActive')->name('role.active');
 
+    //department Manage
+    Route::get('/department/view' , 'DepartmentController@index')->name('department');
+    Route::post('/department/create' , 'DepartmentController@create')->name('department.create');
+    Route::get('/department/view/{id}' , 'DepartmentController@view')->name('department.view');
+    // Route::post('/role/update/{id}' , 'RoleController@update')->name('role.update');
+    // Route::get('/role/delete/{id}' , 'RoleController@delete')->name('role.delete');
+    Route::post('/department/active/{id}' , 'DepartmentController@departmentActive')->name('department.active');
+
     //Permission of roles
     Route::get('/permission' , 'PermissionController@index')->name('permission.list');
     Route::get('/permission/create' , 'PermissionController@create')->name('permission.create');

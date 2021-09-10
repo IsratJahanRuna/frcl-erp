@@ -55,29 +55,29 @@
                                             <select id="distributor_name" name="order_id" data-placeholder="Select a option" >
                                             <option> Select a Distributor</option>
                                                 @foreach($distributor_names as $distributor)
-                                                   
+
                                                    @if($distributor->delivery_status == "Not Delivered")
                                                    <option value="{{ $distributor->order_id }}">{{ $distributor->distributor->random_number }} : {{ $distributor->distributor->distributor_name }} : {{ $distributor->order_id }}</option>
-                                                    
-                                                    
+
+
 
                                                    @endif
-                                                   
-                                                   
+
+
                                                 @endforeach
-                                               
-                                                
-                                              
-                                               
+
+
+
+
                                             </select>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-outline-primary">View Informations</button>
+                                        <button type="submit" class="btn btn-outline-primary" id="search">View Informations</button>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                                                 <div class="nk-tb-col tb-col-md"><span>Value</span></div>
                                                 <div class="nk-tb-col tb-col-md"><span>CTN</span></div>
                                                 <div class="nk-tb-col tb-col-md"><span>CTN Serial</span></div>
-                                                
+
                                                 <div class="nk-tb-col nk-tb-col-tools">
                                                 </div>
                                             </div><!-- .nk-tb-item -->
@@ -130,7 +130,7 @@
                                             @foreach($orders as $key=>$order)
 
                                             @foreach(App\OrderDetails::where('order_id' , $order->order_id)->get()  as $pro)
-                                            
+
                                             <div class="nk-tb-item">
                                                 <div class="nk-tb-col">
                                                     <span class="tb-lead"><a href="#">
@@ -196,10 +196,10 @@
                                                     <input type="text" class="form-control" name="ctn_serial[]">
                                                     </span>
                                                 </div>
-                                                
+
                                                 <div class="nk-tb-col nk-tb-col-tools">
                                                     <ul class="nk-tb-actions gx-1">
-                                                        
+
                                                         <!-- <li class="nk-tb-action-hidden"><a href="#" class="btn btn-icon btn-trigger btn-tooltip" title="View Order" data-toggle="dropdown">
                                                                 <em class="icon ni ni-eye"></em></a></li>
                                                         <li>
@@ -228,12 +228,12 @@
                                                 <input type="hidden" class="form-control" name="remarks" value="{{$order->product_id}}">
                                                 <input type="hidden" class="form-control" name="date" value="{{$newDate}}">
                                                 <input type="hidden" class="form-control" name="value[]" value="{{$pro->sub_total}}">
-                                            
+
                                                         @endforeach
                                             @endforeach
                                         </div><!-- .nk-tb-list -->
                                     </div><!-- .card-inner -->
-                                    
+
                                     <div class="card-inner">
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -252,14 +252,14 @@
                                                             <h4 class="nk-modal-title">Congratulations!</h4>
                                                             <div class="nk-modal-text">
                                                                 <div class="caption-text">
-                                                                    
+
                                                                     <strong>
                                                                         <a href=""> You’ve successfully Delivered <br>
                                                                         the Ordered Products </a>
-                                                                    </strong> 
-                                                                    
+                                                                    </strong>
+
                                                                     </div>
-                                                                
+
                                                             </div>
                                                             <div class="nk-modal-action">
                                                                 <button type="submit" class="btn btn-lg btn-mw btn-success" >Confirm</button>
@@ -279,7 +279,7 @@
                             </div><!-- .card -->
                         </div><!-- .nk-block -->
                         @endif
-                    
+
                     </div><!-- .card-preview -->
                 </div><!-- .nk-block -->
             </div>
@@ -300,6 +300,15 @@
 
         $("#default").select2({
         });
+
+        $(document).ready(function(){
+        $("#search").click(function(){
+
+         alert("Did you fillup the search box?");
+
+
+  });
+});
 </script>
 
 @endsection

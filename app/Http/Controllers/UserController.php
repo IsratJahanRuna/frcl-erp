@@ -27,7 +27,7 @@ class UserController extends Controller
         $roles = Role::where('status' , 1)->orderBy('id' , 'desc')->get();
     	return view ('admin.layout.user.userAdd', compact('roles'));
     }
-    
+
     public function create(Request $request)
     {
         // dd($request->all());
@@ -50,14 +50,14 @@ class UserController extends Controller
             //     'user_name' => 'required|unique:users|max:25',
             //     'email' => 'required|unique:users|email',
             // ]);
-    
-            // if ($validator->fails()) 
+
+            // if ($validator->fails())
             // {
             //     return redirect('user.add')->withErrors($validator)->withInput();
             // }
 
        $user =  User::create([
-            
+
             'name'=>$request->name,
             'contact'=>$request->contact,
             'email'=>$request->email,
@@ -70,10 +70,10 @@ class UserController extends Controller
             'nid'=>$request->nid,
             'joinDate'=>$request->joinDate,
             'image'=>$file_name,
-            
+
             'password'=>bcrypt($request->password),
             // 'user_id'=>auth()->user()->id
-            
+
         ]);
         // dd($user);
         DB::commit();
@@ -82,11 +82,11 @@ class UserController extends Controller
             return redirect()->route('user.list');
 
         }
-        catch(Throwable $ex){ 
-            
+        catch(Throwable $ex){
+
             DB::rollBack();
             // dd($ex->getMessage());
-            
+
             session()->flash('error', 'User Information not Added Successfully');
             return redirect()->back();
         }
@@ -102,13 +102,13 @@ class UserController extends Controller
     {
         $roles = DB::table('roles')->where('status' , 1)->get();
         $user = User::find($id);
-        
+
         return view('admin.layout.user.userEdit',compact('user', 'roles'));
     }
 
     public function update(Request $request, $id)
     {
-        
+
         $data = $request->all();
         if($request->hasFile('image'))
         {
@@ -122,12 +122,12 @@ class UserController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            
+
             'email' => 'required|unique:users|email',
         ]);
-        
+
         User::where('id',$id)->update([
-           
+
             'name'=>$request->name,
             'contact'=>$request->contact,
             'email'=>$request->email,
@@ -143,7 +143,7 @@ class UserController extends Controller
         ]);
         session()->flash('success', 'Successfully Updated the User!!');
         return redirect()->route('user.list');
-     
+
     }
 
     public function delete($id)
@@ -169,7 +169,7 @@ class UserController extends Controller
    			$users->save();
             session()->flash('success', 'User enabled');
    		}
-           
+
    		return redirect()->back();
     }
 
@@ -264,6 +264,31 @@ class UserController extends Controller
                     ->with('msg' , 'Base Activated Successfully');
     }
 
+    public function updateZone(Request $request , $id)
+    {
+        $d_id = District::where('id', $id)->first();
+        // dd($d_id);
+        District::where('id',$id)->update([
+			'name'=>$request->name,
+            'bn_name'=>$request->bn_name,
+        ]);
+
+        Toastr::success('District Updated Successfully', 'Title');
+        return redirect()->route('user.zone', $d_id->division_id);
+    }
+    public function updateBase(Request $request , $id)
+    {
+        $u_id = Upazila::where('id', $id)->first();
+        // dd($d_id);
+        Upazila::where('id',$id)->update([
+			'name'=>$request->name,
+            'bn_name'=>$request->bn_name,
+        ]);
+
+        Toastr::success('District Updated Successfully', 'Title');
+        return redirect()->route('user.base', $u_id->district_id);
+    }
+
     public function user_password(Request $request , $id)
     {
         $user = User::find($id);
@@ -279,4 +304,5 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Please add User Complete Information first.');
         }
     }
+
 }

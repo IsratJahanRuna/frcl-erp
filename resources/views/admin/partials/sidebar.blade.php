@@ -33,6 +33,9 @@
                             <span class="nk-menu-text">User Manage</span>
                         </a>
                         <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('department')}}" class="nk-menu-link"><span class="nk-menu-text">Department Manage</span></a>
+                            </li>
                         <li class="nk-menu-item">
                                 <a href="{{route('role')}}" class="nk-menu-link"><span class="nk-menu-text">Role Manage</span></a>
                             </li>
@@ -53,12 +56,12 @@
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.division')}}" class="nk-menu-link"><span class="nk-menu-text">Division Manage</span></a>
                                     </li>
-                                    <li class="nk-menu-item">
+                                    {{-- <li class="nk-menu-item">
                                         <a href="{{route('user.zone')}}" class="nk-menu-link"><span class="nk-menu-text">Zone Manage</span></a>
                                     </li>
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.base')}}" class="nk-menu-link"><span class="nk-menu-text">Base Manage</span></a>
-                                    </li>
+                                    </li> --}}
 
                                     <!-- <li class="nk-menu-item">
                                         <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
@@ -89,12 +92,12 @@
                             <li class="nk-menu-item">
                                 <a href="{{route('db.stock.report')}}" class="nk-menu-link"><span class="nk-menu-text">DB Stock Report</span></a>
                             </li>
-                            <li class="nk-menu-item">
+                            {{-- <li class="nk-menu-item">
                                 <a href="{{route('distributorm.index')}}" class="nk-menu-link"><span class="nk-menu-text">Distributor Mullayons List</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('distributorm.create')}}" class="nk-menu-link"><span class="nk-menu-text">Distributor Mullayons Form</span></a>
-                            </li>
+                            </li> --}}
 
                         </ul><!-- .nk-menu-sub -->
                     </li>
