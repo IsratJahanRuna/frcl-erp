@@ -54,24 +54,27 @@
                                                     
                                                     $amount = App\Payment::where('distributor_id', $payment->id)->sum('amount');
 
-                                                    $eligible = ($credit_limit + $amount) - (optional( App\Order::where('distributor_id' , $payment->id)->where('status' , 1)->first())->total );
-                                                     
-                                                    $remaining_balance = $payment->amount - (optional(App\Order::where('distributor_id' , $payment->id)->where('status', 1)->first())->total);
+                                                    $eligible = ( $amount) - ( App\Order::where('distributor_id' , $payment->id)->where('status' , 1)->first()->sum('total') );
+                                                    
+                                                    $remaining_balance = (optional(App\Order::where('distributor_id' , $payment->id)->where('delivery_status', '=' , 'Not Delivered')->first())->sum('total'));
 
                                                     if(App\Order::all()->count() > 0) {
-
-                                                        $pendingOrder = App\Order::where('distributor_id', $payment->id)->sum('total');
+                                                        $pendingOrder_hold = 0;
+                                                        $pendingOrder_hold = $pendingOrder_hold + (App\Order::where('distributor_id', $payment->id)->where('status' , 0)->sum('total'));
                                                         $pendingCart = App\Cart::where('distributor_id' , $payment->id)->sum('sub_total');
-                                                        $pending_order_value = ($pendingOrder + $pendingCart);
+                                                        $pending_order_value = ($pendingOrder_hold + $pendingCart);
 
                                                         }
+
+                                                        $available = 0;
+                                                        $available = $available + $payment->credit_limit - $remaining_balance;
                                                     @endphp
 
                                                     <tr>
                                                         <!-- Credit Limit caltulation -->
                                                         <td>
                                                         
-                                                            Credit Limit : {{ $credit_limit }}
+                                                            Credit Limit : {{ number_format ( $credit_limit , 2)}}
                                                             
                                                         </td>
                                                         <!-- Eligible balance Caltulation -->
@@ -87,7 +90,7 @@
                                                             
                                                                 @if(App\Order::where('status' , 0)->get()->count() > 0)
                                                                 
-                                                                   Hold: {{ number_format ( $pending_order_value , 2)}}
+                                                                   Hold: {{ number_format ( $pendingOrder_hold , 2)}}
                                                                 
 
                                                                 @else
@@ -129,7 +132,26 @@
                                                         <!-- Remaining Balance -->
                                                         <td>
                                                             
-                                                           Balance: {{ $remaining_balance }}
+                                                            @if(App\Order::all()->count() > 0)
+                                                        
+                                                            
+                                                                @if(App\Order::where('status' , 1)->get()->count() > 0)
+                                                                
+                                                                Balance: - {{ number_format ( $remaining_balance , 2)}}
+                                                                
+
+                                                                @else
+                                                                
+                                                                    Balance: 0.00
+                                                                
+                                                                @endif
+                                                        
+                                                    
+                                                        @else
+                                                        
+                                                            Hold: 0.00
+                                                        
+                                                        @endif
 
                                                         
                                                     </td>
@@ -138,22 +160,25 @@
                                                         
                                                         @if(App\Cart::all()->count() > 0)
                                                             
-                                                            
+                                                        
                                                                 <td class="success-box amount_money" colspan="5" id="amount_money" ><center><b>WithIn Limit. You Can Still Order. Remianing Amount: 
                                                                 
                                                                 <span id="amount_money"> 
-                                                                {{ number_format ( $eligible , 2)}}
+                                                                    
+                                                                {{ number_format ( $available , 2)}}
                                                                 </span></b> </center></td>
                                                             
-                                                                
-                                                          
 
                                                         @else
-                                                            <td class="success-box amount_money" colspan="5" id="amount_money" ><center><b>WithIn Limit. You Can Still Order. Remianing Amount: 
+                                                        
+                                                            <td class="danger-box amount_money" colspan="5" id="amount_money" ><center><b>You Cannot Order . Remianing Amount: 
                                                                 
                                                             <span id="amount_money"> 
-                                                            {{ number_format ( $eligible , 2)}}
+                                                                
+                                                            {{ number_format ( $available , 2)}}
+
                                                             </span></b> </center></td>
+                                                            
                                                         @endif
                                                     </tr>
                                                     <tr>
@@ -177,6 +202,9 @@
                                                 </table>
                                             </div>
                                         </div>
+
+                                        {{-- Condition for Not applying for more order --}}
+                                        @if($available > 0)
                                         <form method="post" action="{{route('order.category' , $distributor_id)}}" class="form-validate" enctype="multipart/form-data">
                                         @csrf
                                             <div class="col-md-3">
@@ -202,6 +230,14 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        @else
+                                       <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label danger-box" for="fv-topics" style="margin-top: 20px; padding: 20px; text-align: center;">You Can not Order</label>
+                                                   
+                                                </div>
+                                            </div> 
+                                        @endif
                                     </div>
                                     
                                     <form action="{{route('order.create' , $distributor_id)}}"  method="POST">
