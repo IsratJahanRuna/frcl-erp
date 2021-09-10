@@ -210,9 +210,5 @@ Route::group(['prefix'=>'admin'], function()
     Route::get('/distributorm/create' , 'DistributorMullayonsController@create')->name('distributorm.create');
     Route::post('/distributorm/store' , 'DistributorMullayonsController@store')->name('distributorm.store');
     Route::get('/distributorm/view/{id}' , 'DistributorMullayonsController@view')->name('distributorm.view');
-    // Route::post('/driver/create' , 'DeliveryController@driverCreate')->name('driver.create');
-    // Route::post('/driver/update/{id}' , 'DeliveryController@driverUpdate')->name('driver.update');
-    // Route::post('/driver/updateStatus/{id}' , 'DeliveryController@updateStatus')->name('driver.updateStatus');
-
 
 });
