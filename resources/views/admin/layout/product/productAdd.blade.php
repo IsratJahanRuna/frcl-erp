@@ -41,27 +41,32 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="fv-topics">Category <span style="top:-5px; color:red;">*</span></label reqired>
                                     <div class="form-control-wrap ">
                                         <select class="form-control form-select" id="fv-topics" name="sub_category_id" data-placeholder="Select a option" required>
-                                            
+
                                             <option value="">Select a category</option>
-                                            @foreach(App\Category::orderBy('name', 'asc')->where('sub_category', 0)->where('status' , 1)->get() as $parent)
+                                            {{-- @foreach(App\Category::orderBy('name', 'asc')->where('sub_category', 0)->where('status' , 1)->get() as $parent)
                                             <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                             @foreach (App\Category::orderBy('name', 'asc')->where('sub_category', $parent->id)->where('status' , 1)->get() as $child)
                                             <option value="{{ $child->id }}">&emsp;&emsp;--&nbsp;{{ $child->name }}</option>
                                             @endforeach
-                                            @endforeach
+                                            @endforeach --}}
+                                            @foreach(App\Category::where('status' , 1)->get() as $category)
+                                            @if($category->sub_category != 0)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endif
+                                        @endforeach
                                         </select>
-                                        
+
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Bar Code</label>
@@ -88,7 +93,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-topics">Brand <span style="top:-5px; color:red;">*</span></label reqired>
+                                    <label class="form-label" for="fv-topics">Brand <span style="top:-5px; color:red;">*</span></label >
                                     <div class="form-control-wrap ">
                                         <select class="form-control form-select" id="fv-topics" name="brand_id" data-placeholder="Select a option" required>
                                             @foreach($brands as $brand)
@@ -122,12 +127,16 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Image</label>
                                     <div class="form-control-wrap">
                                         <input type="file" class="form-control" id="fv-email" name="image">
+                                    </div>
+                                    <label class="form-label mt-3" for="fv-email">CTN_Number</label>
+                                    <div class="form-control-wrap">
+                                        <input type="number" class="form-control" min="1" id="fv-email" name="ctn_number">
                                     </div>
                                 </div>
                             </div>
@@ -136,10 +145,10 @@
                                     <label class="form-label" for="fv-message">Remarks</label>
                                     <div class="form-control-wrap">
                                         <textarea class="form-control form-control-sm" id="fv-message" name="description" placeholder="Write Description"></textarea>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-dim btn-outline-primary" >Add</button>

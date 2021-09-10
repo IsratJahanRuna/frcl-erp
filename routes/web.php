@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DistributorMullayonsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +49,12 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/user/active/{id}' , 'UserController@UserActive')->name('user.active');
     Route::post('/user_password/{id}' , 'UserController@user_password')->name('user.password');
     Route::post('/division/active/{id}' , 'UserController@divisionActive')->name('division.active');
-    Route::get('division/manage' , 'UserController@division')->name('user.division');
-    Route::get('zone/manage' , 'UserController@zone')->name('user.zone');
+    Route::get('/division/manage' , 'UserController@division')->name('user.division');
+    Route::get('/zone/manage/{id}' , 'UserController@zone')->name('user.zone');
     Route::post('/zone/active/{id}' , 'UserController@zoneActive')->name('zone.active');
-    Route::get('base/manage' , 'UserController@base')->name('user.base');
+    Route::post('/zone/Update/{id}' , 'UserController@updateZone')->name('user.zone.update');
+    Route::get('/base/manage/{id}' , 'UserController@base')->name('user.base');
+    Route::post('/base/Update/{id}' , 'UserController@updateBase')->name('user.base.update');
     Route::post('/base/active/{id}' , 'UserController@baseActive')->name('base.active');
 
     //role Manage
@@ -205,10 +206,5 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/driver/update/{id}' , 'DeliveryController@driverUpdate')->name('driver.update');
     Route::post('/driver/updateStatus/{id}' , 'DeliveryController@updateStatus')->name('driver.updateStatus');
 
-    //Distributor mullayons information
-    Route::get('/distributorm/index' , 'DistributorMullayonsController@index')->name('distributorm.index');
-    Route::get('/distributorm/create' , 'DistributorMullayonsController@create')->name('distributorm.create');
-    Route::post('/distributorm/store' , 'DistributorMullayonsController@store')->name('distributorm.store');
-    Route::get('/distributorm/view/{id}' , 'DistributorMullayonsController@view')->name('distributorm.view');
 
 });
