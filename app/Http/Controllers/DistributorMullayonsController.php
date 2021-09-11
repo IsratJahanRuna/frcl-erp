@@ -13,19 +13,22 @@ class DistributorMullayonsController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index(){
+    public function index()
+    {
         return view('admin.layout.distributorMullayons.distributorMullayonsList', [
             'distributor_mullayons' => DistributorMullayon::orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         $divisions = Division::where('status' , 1)->get();
         return view('admin.layout.distributorMullayons.distributorMullayonsForm', compact('divisions'));
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // dd($request->all());
         // die();
         $assessment_person_image = '';
@@ -47,12 +50,14 @@ class DistributorMullayonsController extends Controller
             }
         }
 
-        DistributorMullayon::create($request->except('_token', 'assessment_person_image', 'applicant_person_image', 'partnership_distibutor_name', 'partnership_distibutor_address', 'partnership_distibutor_percentage') + [
+        DistributorMullayon::create($request->except('_token', 'assessment_person_image', 'applicant_person_image', 'partnership_distibutor_name', 'partnership_distibutor_address', 'partnership_distibutor_percentage' , 'before_electrical_distributorship_name' , 'before_electrical_distributorship_duration') + [
             'assessment_person_image' => $assessment_person_image,
             'applicant_person_image' => $applicant_person_image,
             'partnership_distibutor_name' => json_encode($request->partnership_distibutor_name),
             'partnership_distibutor_address' => json_encode($request->partnership_distibutor_address),
             'partnership_distibutor_percentage' => json_encode($request->partnership_distibutor_percentage),
+            'before_electrical_distributorship_name' => json_encode($request->before_electrical_distributorship_name),
+            'before_electrical_distributorship_duration' => json_encode($request->before_electrical_distributorship_duration),
         ]);
         return redirect()->route('distributorm.index')->with('msg','Distributor Mullayons inserted Successfully');
     }

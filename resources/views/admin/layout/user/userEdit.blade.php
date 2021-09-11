@@ -18,7 +18,7 @@
                         <div class="row g-gs">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <label class="form-label" for="fv-email">User Name</label>
+                                <label class="form-label" for="fv-email">User Name <span style="top:-5px; color:red;">*</span></label>
                                     <div class="form-control-wrap">
                                         <input type="text" class="form-control" id="fv-email" value="{{$user->name}}" name="name" placeholder="Name" required>
                                     </div>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-email">Contact</label>
+                                    <label class="form-label" for="fv-email">Contact <span style="top:-5px; color:red;">*</span></label>
                                     <div class="form-control-wrap">
                                         <input type="text" class="form-control" id="fv-email" value="{{$user->contact}}" name="contact" pattern="[0-9+]{11,14}" placeholder="+8801XXXXXXXXX" required>
                                     </div>
@@ -36,13 +36,13 @@
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Address</label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="fv-email" value="{{$user->address}}" name="address" placeholder="Address" required>
+                                        <input type="text" class="form-control" id="fv-email" value="{{$user->address}}" name="address" placeholder="Address">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-email">Email</label>
+                                    <label class="form-label" for="fv-email">Email <span style="top:-5px; color:red;">*</span></label>
                                     <div class="form-control-wrap">
                                         <input type="email" class="form-control" id="fv-email" value="{{$user->email}}" name="email" placeholder="email@gmail.com" required>
                                     </div>
@@ -52,13 +52,13 @@
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Company Name</label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="fv-email" value="{{$user->companyName}}" name="companyName" placeholder="First Rays" required>
+                                        <input type="text" class="form-control" id="fv-email" value="{{$user->companyName}}" name="companyName" placeholder="First Rays">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-topics">Role</label>
+                                    <label class="form-label" for="fv-topics">Role <span style="top:-5px; color:red;">*</span></label>
                                     <div class="form-control-wrap ">
                                         <select class="form-control form-select" id="fv-topics" name="role_id" data-placeholder="Select a option" required>
                                             @foreach($roles as $role)
@@ -136,7 +136,7 @@
                             
                             <div class="col-md-12">
                                 <div class="form-group"> 
-                                    <button type="submit" class="btn btn-dim btn-outline-primary" onclick="myFunction()" >Update Information</button>
+                                    <button type="submit" class="btn btn-outline-primary" onclick="myFunction()" >Update Information</button>
                                     <a href="{{ URL::previous() }}" class="btn btn-outline-info">Back</a>
                                 </div>
                             </div>

@@ -47,7 +47,7 @@
                                                 <select id="distributor_name" name="distributor_id" data-placeholder="Select a option" >
                                                     <option value="">Select Name</option>
                                                     @foreach(App\Distributor::where('active', 1)->get() as $distributor)
-                                                        <option value="{{ $distributor->id }}">{{ $distributor->random_number }} : : {{ $distributor->distributor_name }} : : {{ $distributor->mobile }} : : {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}</option>
+                                                        <option value="{{ $distributor->id }}" required>{{ $distributor->random_number }} : : {{ $distributor->distributor_name }} : : {{ $distributor->mobile }} : : {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}</option>
                                                     @endforeach
                                                 </select>
                                         </div>
@@ -55,10 +55,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                    <label class="form-label" for="fv-topics">Bank Name <span style="top:-5px; color:red;">*</span></label reqired>
+                                    <label class="form-label" for="fv-topics">Bank Name </label reqired>
                                         <div class="form-control-wrap ">
-                                            <select class="form-control form-select" id="fv-topics" name="bank_name" data-placeholder="Select a option" >
-                                            
+                                            <select class="form-control form-select" id="fv-topics" name="bank_name" data-placeholder="Select a Bank" >
+                                                <option value="">Select a Bank</option>
                                             @foreach($banks as $bank)        
                                                 <option value="{{ $bank->id }}">{{ $bank->name }} -- Bank Account -{{ $bank->account_number }}</option>
                                             @endforeach

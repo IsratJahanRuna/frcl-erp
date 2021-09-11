@@ -56,6 +56,27 @@
                         </div>
                     </div>
                 </div>
+
+                @if($distributors->distributor_payment == 0)
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="fv-email">Add Credit Limit <span style="top:-5px; color:red;">*</span></label reqired>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" id="fv-email" value="{{$distributors->distributor_payment}}" placeholder="Enter Credit" required>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label" for="fv-email"></label>
+                        <div class="form-control-wrap">
+                            <label class="form-label" for="fv-email" style="color: red;">{{ $distributors->distributor_name }} Has No Payment</label>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <!-- <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Collection</label>

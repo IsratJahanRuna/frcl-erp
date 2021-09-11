@@ -299,7 +299,7 @@
                                             </tr><!-- .nk-tb-item  -->
                                             <!-- Modal Content Code -->
                                             
-                                            <!-- promotion Modal start -->
+                                            <!-- Password Modal start -->
                                             <div class="modal fade" tabindex="-1" id="addPassword{{ $user->id }}">
                                                 <div class="modal-dialog modal-dialog-top" role="document">
                                                     <div class="modal-content">
@@ -316,7 +316,54 @@
                                                                 <div class="form-group">
                                                                     <div class="form-control-wrap">
                                                                         <label class="form-label" for="default-06">Welcome </label><span style="color:  #2451d1 ; font-weight: bold;"> Mr/Mrs {{ $user->name }} *</span>
+                                                                        
+                                                                        <br>
+                                                                        @if($user->password == null)
                                                                         <input type="password" class="form-control" id="promotion_price" name="password" placeholder="Password">
+                                                                        @else
+                                                                        You already Set Password
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-md btn-primary">Save</button>
+                                                                    @if($user->password != null)
+                                                                    <a href="#updatePassword{{ $user->id }}" data-toggle="modal" class="btn btn-success">
+                                                                    
+                                                                        <span>Set New Password</span>
+                                                                    </a>
+                                                                    @endif
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modal end -->
+
+                                            <!-- Password Modal start -->
+                                            <div class="modal fade" tabindex="-1" id="updatePassword{{ $user->id }}">
+                                                <div class="modal-dialog modal-dialog-top" role="document">
+                                                    <div class="modal-content">
+                                                        <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <em class="icon ni ni-cross"></em>
+                                                        </a>
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Set Password</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ route('user.passwordUpdate', $user->id) }}" method="post" class="form-validate is-alter">
+                                                                @csrf
+                                                                
+                                                                <div class="form-group">
+                                                                    <div class="form-control-wrap">
+                                                                        <label class="form-label" for="default-06">Welcome </label><span style="color:  #2451d1 ; font-weight: bold;"> Mr/Mrs {{ $user->name }} *</span>
+                                                                        
+                                                                        <input type="password" class="form-control" id="promotion_price" name="password" placeholder="Password">
+                                                                        
                                                                     </div>
                                                                 </div>
                                                                 
@@ -329,104 +376,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- promotion Modal end -->
-
-                                            {{-- <!-- Modal -->
-                                            <div class="modal fade" tabindex="-1" id="viewModal{{$user->id}}">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">User Information</h5>
-                                                            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <em class="icon ni ni-cross"></em>
-                                                            </a>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <table class="table table-borderless">
-                                                                <tr>
-                                                                    <td>
-                                                                        @if(!empty($user->image))
-                                                                        <p>Image : <img class = "customImg" src="{{ asset('public/assets/images/user/'.$user->image) }}" ></p>
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Name : </p>
-                                                                    </td>
-                                                                    <td>{{$user->name}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Contact : </p>
-                                                                    </td>
-                                                                    <td>{{$user->contact}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Address : </p>
-                                                                    </td>
-                                                                    <td>{{$user->address}}</td>
-                                                                </tr>
-
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Email : </p>
-                                                                    </td>
-                                                                    <td>{{$user->email}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Company : </p>
-                                                                    </td>
-                                                                    <td>{{$user->companyName}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Role : </p>
-                                                                    </td>
-                                                                    <td>{{$user->role->name}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Status : </p>
-                                                                    </td>
-                                                                    <td>@if($user->status == 1)
-                                                                        <span class="tb-status text-success">Active</span>
-                                                                        @else
-                                                                        <span class="tb-status text-danger">Inactive</span>
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
-                                                                @php
-                                                                $timestamp = strtotime($user->dob);
-                                                                $newDate = date('d F, Y', $timestamp);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Date of Birth : </p>
-                                                                    </td>
-                                                                    <td>{{$newDate}}</td>
-                                                                </tr>
-                                                                @php
-                                                                $timestamp = strtotime($user->joinDate);
-                                                                $newDate = date('d F, Y', $timestamp);
-                                                                @endphp
-                                                                <tr>
-                                                                    <td>
-                                                                    <p>Join Date : </p>
-                                                                    </td>
-                                                                    <td>{{$newDate}}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="modal-footer bg-light">
-                                                        <span class="sub-text"><button class="btn btn-secondary"><em class="icon ni ni-files">Print</em></button></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- modal End --> --}}
+                                            <!-- Modal end -->
+                                           
                                        
                                             <!-- Delete Modal -->
                                                 <div class="modal fade" tabindex="-1" id="DeleteModal{{$user->id}}">

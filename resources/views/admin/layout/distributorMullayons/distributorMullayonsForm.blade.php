@@ -39,20 +39,25 @@
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-4 form-group">
-                                <label for="distributor_division" class="form-label">Division
-                                    *</label>
-                                <input type="text" name="distributor_division"
-                                    id="distributor_division" class="form-control">
+                                
+                                <label>Division <span style="top:-5px; color:red;">*</span></label reqired>
+                                    <select name="distributor_division" id="division" class="form-control" required>
+                                        @foreach($divisions as $division)
+                                        <option value="{{$division->id}}">{{$division->name}}</option>
+                                        @endforeach
+                                    </select>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <label for="distributor_zone" class="form-label">Zone *</label>
-                                <input type="text" name="distributor_zone" id="distributor_zone"
-                                    class="form-control">
+                                <label>Zone <span style="top:-5px; color:red;">*</span></label reqired>
+                                    <select name="distributor_zone" id="district" class="form-control" >
+                                        <option value="">--Select Zone--</option>
+                                    </select>
                             </div>
                             <div class="col-lg-4 form-group">
-                                <label for="distributor_base" class="form-label">Base *</label>
-                                <input type="text" name="distributor_base" id="distributor_base"
-                                    class="form-control">
+                                <label>Base <span style="top:-5px; color:red;">*</span></label reqired>
+                                    <select name="distributor_base" id="upazila" class="form-control" >
+                                        <option value="">--Select Base--</option>
+                                    </select>
                             </div>
                         </div>
                     </div>
@@ -475,6 +480,47 @@
             )
         });
     });
+
+
+    $(document).ready(function(){
+            $('#division').change(function(){
+                var division_id = $(this).val();
+                // alert(division_id);
+                // ajaxSetup start
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // ajaxSetup end
+
+
+                // ajaxSetup district request start
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('distributor.district') }}',
+                    data:{division_id:division_id},
+                    success:function(data){
+                        $('#district').html(data);
+                    }
+                });
+                // ajaxSetup district request end
+            });
+
+            $('#district').change(function(){
+                var district_id = $(this).val();
+                // ajaxSetup upazila request start
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('distributor.upazila') }}',
+                    data:{district_id:district_id},
+                    success:function(data){
+                        $('#upazila').html(data);
+                }
+                });
+                // ajaxSetup upazila  request end
+            });
+        });
 
 </script>
 @endsection
