@@ -48,15 +48,21 @@
                                                 
                                                 @foreach($payments as $payment)
 
+                                                {{-- @dd($payment) --}}
+
                                                     @php
 
                                                     $credit_limit = $payment->credit_limit;
                                                     
-                                                    $amount = App\Payment::where('distributor_id', $payment->id)->sum('amount');
-
-                                                    $eligible = ( $amount) - ( App\Order::where('distributor_id' , $payment->id)->where('status' , 1)->first()->sum('total') );
                                                     
-                                                    $remaining_balance = (optional(App\Order::where('distributor_id' , $payment->id)->where('delivery_status', '=' , 'Not Delivered')->first())->sum('total'));
+                                                    $amount = App\Payment::where('distributor_id', $payment->id)->sum('amount');
+                                                    
+                                                   if (App\Order::all()->count() > 0){
+                                                    $eligible = ( $amount) - ( App\Order::where('distributor_id' , $payment->id)->where('status' , 1)->first()->total );
+                                                    // @dd($eligible);
+                                                   }
+                                                   
+                                                    $remaining_balance = (optional(App\Order::where('distributor_id' , $payment->id)->where('delivery_status', '=' , 'Not Delivered')->first())->total);
 
                                                     if(App\Order::all()->count() > 0) {
                                                         $pendingOrder_hold = 0;
@@ -80,7 +86,7 @@
                                                         <!-- Eligible balance Caltulation -->
                                                         <td>
                                                         
-                                                        Eligible : {{ number_format ( $eligible , 2)}}
+                                                        Eligible : 
                                                         </td>
                                                         <!-- Hold Order Balance Calculation -->
                                                         <td>
@@ -161,23 +167,23 @@
                                                         @if(App\Cart::all()->count() > 0)
                                                             
                                                         
-                                                                <td class="success-box amount_money" colspan="5" id="amount_money" ><center><b>WithIn Limit. You Can Still Order. Remianing Amount: 
-                                                                
-                                                                <span id="amount_money"> 
-                                                                    
-                                                                {{ number_format ( $available , 2)}}
-                                                                </span></b> </center></td>
-                                                            
-
-                                                        @else
-                                                        
-                                                            <td class="danger-box amount_money" colspan="5" id="amount_money" ><center><b>You Cannot Order . Remianing Amount: 
+                                                                <td class="danger-box amount_money" colspan="5" id="amount_money" ><center><b>You Cannot Order . Remianing Amount: 
                                                                 
                                                             <span id="amount_money"> 
                                                                 
                                                             {{ number_format ( $available , 2)}}
 
                                                             </span></b> </center></td>
+                                                            
+
+                                                        @else
+                                                          <td class="success-box amount_money" colspan="5" id="amount_money" ><center><b>WithIn Limit. You Can Still Order. Remianing Amount: 
+                                                                
+                                                                <span id="amount_money"> 
+                                                                    
+                                                                {{ number_format ( $available , 2)}}
+                                                                </span></b> </center></td>
+                                                           
                                                             
                                                         @endif
                                                     </tr>
@@ -560,7 +566,7 @@
                                                     @csrf
                                                         <input type="hidden" name="distributor_id" value="{{ $distributor_id }}">
                                                         <input type="hidden" name="total" value="{{ $total_amount }}">
-                                                        <input type="hidden" name="eligible_balance" class="form-control" value="{{$eligible}}">
+                                                        {{-- <input type="hidden" name="eligible_balance" class="form-control" value="{{$eligible}}"> --}}
                                                         <input type="hidden" name="credit_limit" class="form-control" value="{{$payment->credit_limit}}">
                                                         <input type="hidden" name="balance" class="form-control" value="{{$remaining_balance}}">
                                                         

@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_id')->nullable();
             $table->unsignedBigInteger('distributor_id')->nullable();
             $table->string('mobile')->nullable();
-            $table->decimal('total')->nullable();
+            $table->decimal('total')->default(0);
             $table->string('acceptingDate')->nullable();
             $table->string('session_id')->nullable();
             $table->string('status')->nullable();

@@ -51,7 +51,7 @@
                                                 </div>
                                                 <div class="data">
                                                     <div class="data-group">
-                                                        @php
+                                                        {{-- @php
                                                             $avgOrder = 0;
                                                             $t = 0;
                                                             $c = App\Order::count();
@@ -66,13 +66,13 @@
                                                             $percent = 0;
                                                             }
                                                             
-                                                        @endphp
+                                                        @endphp --}}
                                                         <div class="amount">
-                                                            {{ $c }}  
+                                                            
                                                         </div>
                                                         
                                                         <div class="info text-right"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up">
-                                                            </em>{{ $percent }} %</span><br><span>vs. last week</span></div>
+                                                            </em> %</span><br><span>vs. last week</span></div>
                                                     </div>
                                                 </div>
                                             </div><!-- .card-inner -->

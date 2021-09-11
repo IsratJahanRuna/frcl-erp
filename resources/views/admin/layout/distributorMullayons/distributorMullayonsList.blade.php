@@ -26,7 +26,7 @@
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
-                            <h3 class="nk-block-title page-title">Distributor List</h3>
+                            <h3 class="nk-block-title page-title">Distributor Mullayon List</h3>
                         </div><!-- .nk-block-head-content -->
                     <div class="nk-block-head-content">
                         <div class="toggle-wrap nk-block-tools-toggle">
@@ -36,7 +36,7 @@
 
                                     <li class="nk-block-tools-opt">
                                         <a href="#" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
-                                        <a href="" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Add New Distributor</span></a>
+                                        <a href="{{ route('distributorm.create') }}" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Add New Distributor</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -79,22 +79,22 @@
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                @if (!empty($data->division))
-                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->division)->name }}
+                                                @if (!empty($data->distributor_division))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->distributor_division)->name }}
                                                 @endif
                                             </div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                @if (!empty($data->zone))
-                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->zone)->name }}
+                                                @if (!empty($data->distributor_zone))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->distributor_division)->name }}
                                                 @endif
                                             </div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
                                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                @if (!empty($data->base))
-                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->base)->name }}
+                                                @if (!empty($data->distributor_base))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->distributor_division)->name }}
                                                 @endif
                                             </div>
                                         </td>

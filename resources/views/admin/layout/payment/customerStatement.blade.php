@@ -92,7 +92,7 @@
                         @foreach($payment->payment as $pay)
                             @php 
                                 $credit_limit = $payment->credit_limit;
-                                $sub_total = App\Order::where('status', 1)->first()->sub_total;
+                                // $sub_total = App\Order::where('status', 1)->first()->sub_total;
 
                                
 
@@ -110,6 +110,7 @@
                                     <td>
                                         {{ $pay->bank->name }}
                                     </td>
+                                    
                                     <td>
                                         Order
                                         {{-- Order: {{ $payment->order }} --}}
@@ -121,11 +122,11 @@
                                     
                                     </td>
                                     <td>
-                                    @if(App\Order::where('status', 1)->first()->sub_total)
+                                    {{-- @if(App\Order::where('status', 1)->first()->sub_total)
                                         {{ $collection }}
                                     @else
                                         00.0
-                                    @endif
+                                    @endif --}}
                                 </td>
                                    <td>
                                        

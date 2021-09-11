@@ -301,13 +301,13 @@
                                             </td>
                                             </tr><!-- .nk-tb-item  -->
                                             <!-- Modal Content Code -->
-<<<<<<< HEAD
+
 
                                             <!-- promotion Modal start -->
-=======
+
                                             
                                             <!-- Password Modal start -->
->>>>>>> 63822c5d6d438f2950012ecfce84dd903ff06146
+
                                             <div class="modal fade" tabindex="-1" id="addPassword{{ $user->id }}">
                                                 <div class="modal-dialog modal-dialog-top" role="document">
                                                     <div class="modal-content">
@@ -349,15 +349,13 @@
                                             </div>
                                             <!-- Modal end -->
 
-<<<<<<< HEAD
-                                            <!-- Modal -->
-                                            {{-- <div class="modal fade" tabindex="-1" id="viewModal2{{$user->id}}">
-                                                <div class="modal-dialog modal-lg" role="document">
-=======
+
+
+
                                             <!-- Password Modal start -->
                                             <div class="modal fade" tabindex="-1" id="updatePassword{{ $user->id }}">
                                                 <div class="modal-dialog modal-dialog-top" role="document">
->>>>>>> 63822c5d6d438f2950012ecfce84dd903ff06146
+
                                                     <div class="modal-content">
                                                         <a href="#" class="close" data-dismiss="modal" aria-label="Close">
                                                             <em class="icon ni ni-cross"></em>
@@ -386,16 +384,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
-                                            </div> --}}
+
+                                            </div>
                                             <!-- modal End -->
 
-=======
-                                            </div>
-                                            <!-- Modal end -->
                                            
-                                       
->>>>>>> 63822c5d6d438f2950012ecfce84dd903ff06146
+
                                             <!-- Delete Modal -->
                                                 <div class="modal fade" tabindex="-1" id="DeleteModal{{$user->id}}">
                                                     <div class="modal-dialog" role="document">

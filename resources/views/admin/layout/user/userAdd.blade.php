@@ -144,13 +144,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-<<<<<<< HEAD
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-dim btn-outline-primary" >Add User Information</button>
-=======
-                                <div class="form-group"> 
-                                    <button type="submit" class="btn btn-outline-primary" >Add User Information</button>
->>>>>>> 202a48d944d069ddaa9f1d3ec24bc2fce52065f1
+
                                     <a href="{{ URL::previous() }}" class="btn btn-outline-info" onclick="myFunction()">Back</a>
                                 </div>
                             </div>

@@ -85,17 +85,17 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-email">Alert Quanity</label>
+                                    <label class="form-label" for="fv-email">Alert Quanity <span style="top:-5px; color:red;">*</span></label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="fv-email" name="alert_quantity" placeholder="Quantity">
+                                        <input type="text" class="form-control" id="fv-email" name="alert_quantity" placeholder="Quantity" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-topics">Brand <span style="top:-5px; color:red;">*</span></label >
+                                    <label class="form-label" for="fv-topics">Brand</label >
                                     <div class="form-control-wrap ">
-                                        <select class="form-control form-select" id="fv-topics" name="brand_id" data-placeholder="Select a option" required>
+                                        <select class="form-control form-select" id="fv-topics" name="brand_id" data-placeholder="Select a option">
                                             <option value="">Select a Brand</option>
                                             @foreach($brands as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->name}}</option>

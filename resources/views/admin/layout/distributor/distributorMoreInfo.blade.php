@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                @if($distributors->distributor_payment == 0)
+                @if($distributors->distributor_payment != 0)
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Add Credit Limit <span style="top:-5px; color:red;">*</span></label reqired>
@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email"></label>
                         <div class="form-control-wrap">
-                            <label class="form-label" for="fv-email" style="color: red;">{{ $distributors->distributor_name }} Has No Payment</label>
+                            <label class="form-label" for="fv-email" style="color: red">{{ $distributors->distributor_name }} Has No Payment</label>
                         </div>
                     </div>
                 </div>

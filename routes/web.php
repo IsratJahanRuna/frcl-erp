@@ -52,10 +52,10 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/user_password_update/{id}' , 'UserController@user_password_update')->name('user.passwordUpdate');
     Route::post('/division/active/{id}' , 'UserController@divisionActive')->name('division.active');
     Route::get('/division/manage' , 'UserController@division')->name('user.division');
-    Route::get('/zone/manage/' , 'UserController@zone')->name('user.zone');
+    Route::get('/zone/manage/{id}' , 'UserController@zone')->name('user.zone');
     Route::post('/zone/active/{id}' , 'UserController@zoneActive')->name('zone.active');
     Route::post('/zone/Update/{id}' , 'UserController@updateZone')->name('user.zone.update');
-    Route::get('/base/manage/' , 'UserController@base')->name('user.base');
+    Route::get('/base/manage/{id}' , 'UserController@base')->name('user.base');
     Route::post('/base/Update/{id}' , 'UserController@updateBase')->name('user.base.update');
     Route::post('/base/active/{id}' , 'UserController@baseActive')->name('base.active');
 

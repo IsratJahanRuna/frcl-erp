@@ -19,11 +19,11 @@ class CreatePaymentsTable extends Migration
             $table->date('date');
             $table->integer('distributor_id');
             $table->string('mobile')->nullable();
-            $table->string('bank_name');
+            $table->string('bank_name')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('ref_no')->nullable();
-            $table->decimal('amount')->nullable();
+            $table->decimal('amount')->default(0);
             $table->string('attachment')->nullable();
             $table->text('remarks')->nullable();
             $table->string('division')->nullable();

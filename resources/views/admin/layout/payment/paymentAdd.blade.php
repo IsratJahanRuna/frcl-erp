@@ -58,7 +58,7 @@
                                     <label class="form-label" for="fv-topics">Bank Name </label reqired>
                                         <div class="form-control-wrap ">
                                             <select class="form-control form-select" id="fv-topics" name="bank_name" data-placeholder="Select a Bank" >
-                                                <option value="">Select a Bank</option>
+                                                <option value="0">Select a Bank</option>
                                             @foreach($banks as $bank)        
                                                 <option value="{{ $bank->id }}">{{ $bank->name }} -- Bank Account -{{ $bank->account_number }}</option>
                                             @endforeach

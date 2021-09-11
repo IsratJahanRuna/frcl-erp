@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
 use App\Role;
 use App\User;
 use Throwable;
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Devfaysal\BangladeshGeocode\Models\Upazila;
 use Devfaysal\BangladeshGeocode\Models\District;
 use Devfaysal\BangladeshGeocode\Models\Division;
+use App\Department;
 
 class UserController extends Controller
 {
@@ -25,9 +25,9 @@ class UserController extends Controller
 
     public function userAdd()
     {
+        $departments = Department::all();
         $roles = Role::where('status' , 1)->orderBy('id' , 'desc')->get();
-        $departments = Department::where('status' , 1)->orderBy('id' , 'desc')->get();
-    	return view ('admin.layout.user.userAdd', compact('roles', 'departments'));
+    	return view ('admin.layout.user.userAdd', compact('roles' , 'departments'));
     }
 
     public function create(Request $request)
@@ -94,10 +94,7 @@ class UserController extends Controller
         }
     }
 
-    public function list()
-    {
-        $users = User::orderBy('id', 'desc')->get();
-        re    public function view($id){
+    public function view($id){
         return view('admin.layout.user.view', [
             'user' => User::findOrFail($id)
         ]);
@@ -276,6 +273,22 @@ class UserController extends Controller
                     ->with('msg' , 'Base Activated Successfully');
     }
 
+    public function user_password(Request $request , $id)
+    {
+        $user = User::find($id);
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+
+            $user->save();
+            return redirect()->back()->with('success', 'Password added successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Please add User Complete Information first.');
+        }
+    }
+
     public function updateZone(Request $request , $id)
     {
         $d_id = District::where('id', $id)->first();
@@ -301,44 +314,7 @@ class UserController extends Controller
         return redirect()->route('user.base', $u_id->district_id);
     }
 
-    public function user_password(Request $request , $id)
-    {
-        $user = User::find($id);
-
-        if ($request->password) {
-            $user->password = bcrypt($request->password);
-
-            $user->save();
-            return redirect()->back()->with('success', 'Password added successfully');
-        }
-        else
-        {
-            return redi    public function updateZone(Request $request , $id)
-    {
-        $d_id = District::where('id', $id)->first();
-        // dd($d_id);
-        District::where('id',$id)->update([
-			'name'=>$request->name,
-            'bn_name'=>$request->bn_name,
-        ]);
-
-        Toastr::success('District Updated Successfully', 'Title');
-        return redirect()->route('user.zone', $d_id->division_id);
-    }
-    public function updateBase(Request $request , $id)
-    {
-        $u_id = Upazila::where('id', $id)->first();
-        // dd($d_id);
-        Upazila::where('id',$id)->update([
-			'name'=>$request->name,
-            'bn_name'=>$request->bn_name,
-        ]);
-
-        Toastr::success('District Updated Successfully', 'Title');
-        return redirect()->route('user.base', $u_id->district_id);
-    }
-
-    public function user_password_update(Request $request, $id)
+    public function user_password_update(Request $request , $id)
     {
         $user = User::find($id);
 
@@ -354,8 +330,4 @@ class UserController extends Controller
         }
     }
 
-// plete Information first.');
-        }
-    }
-
-
+}
