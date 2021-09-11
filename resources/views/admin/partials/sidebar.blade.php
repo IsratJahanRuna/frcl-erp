@@ -56,20 +56,21 @@
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.zone')}}" class="nk-menu-link"><span class="nk-menu-text">Zone Manage</span></a>
                                     </li>
+
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.base')}}" class="nk-menu-link"><span class="nk-menu-text">Base Manage</span></a>
                                     </li>
 
-                                    <!-- <li class="nk-menu-item">
+                                    <li class="nk-menu-item">
                                         <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
                                     </li> -->
                                 </ul><!-- .nk-menu-sub -->
                             </li><!-- .nk-menu-item -->
 
-                            <!-- <li class="nk-menu-item">
+                             <li class="nk-menu-item">
                                 <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
-                            </li> -->
-                        </ul><!-- .nk-menu-sub -->
+                            </li>
+                        </ul>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">

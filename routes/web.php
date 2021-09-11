@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin'], function()
     //User Management
     Route::get('/userList' , 'UserController@list')->name('user.list');
     Route::get('/userAdd' , 'UserController@userAdd')->name('user.add');
+    Route::get('/user/view/{id}' , 'UserController@view')->name('user.view');
     Route::post('/user/create' , 'UserController@create')->name('user.create');
     Route::get('/user/edit/{id}' , 'UserController@edit')->name('user.edit');
     Route::post('/user/Update/{id}' , 'UserController@update')->name('user.update');
@@ -50,10 +51,10 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/user_password/{id}' , 'UserController@user_password')->name('user.password');
     Route::post('/division/active/{id}' , 'UserController@divisionActive')->name('division.active');
     Route::get('/division/manage' , 'UserController@division')->name('user.division');
-    Route::get('/zone/manage/{id}' , 'UserController@zone')->name('user.zone');
+    Route::get('/zone/manage/' , 'UserController@zone')->name('user.zone');
     Route::post('/zone/active/{id}' , 'UserController@zoneActive')->name('zone.active');
     Route::post('/zone/Update/{id}' , 'UserController@updateZone')->name('user.zone.update');
-    Route::get('/base/manage/{id}' , 'UserController@base')->name('user.base');
+    Route::get('/base/manage/' , 'UserController@base')->name('user.base');
     Route::post('/base/Update/{id}' , 'UserController@updateBase')->name('user.base.update');
     Route::post('/base/active/{id}' , 'UserController@baseActive')->name('base.active');
 
@@ -206,5 +207,10 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/driver/update/{id}' , 'DeliveryController@driverUpdate')->name('driver.update');
     Route::post('/driver/updateStatus/{id}' , 'DeliveryController@updateStatus')->name('driver.updateStatus');
 
+    //Distributor Mullayon Form
+    Route::get('/distributor_mullayon' , 'DistributorMullayonsController@index')->name('distributorm.index');
+    Route::get('/distributor_mullayon/create' , 'DistributorMullayonsController@create')->name('distributorm.create');
+    Route::post('/distributor_mullayon/store' , 'DistributorMullayonsController@store')->name('distributorm.store');
+    Route::get('/distributor_mullayon_view/{id}' , 'DistributorMullayonsController@view')->name('distributorm.view');
 
 });

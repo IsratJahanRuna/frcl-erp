@@ -78,13 +78,25 @@
                                             <div class="custom-control custom-control-sm custom-checkbox notext">{{ $data->applicant_person_mobile }}</div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">{{ $data->distributor_division }}</div>
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                @if (!empty($data->division))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->division)->name }}
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">{{ $data->distributor_zone }}</div>
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                @if (!empty($data->zone))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->zone)->name }}
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-check">
-                                            <div class="custom-control custom-control-sm custom-checkbox notext">{{ $data->distributor_base }}</div>
+                                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                                @if (!empty($data->base))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($data->base)->name }}
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">

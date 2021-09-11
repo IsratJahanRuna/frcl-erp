@@ -50,7 +50,7 @@
 
 		The following rule will only run if your browser supports CSS grid.
 
-		Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+		Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling.
 
 		*/
 
@@ -110,10 +110,10 @@
         <div class="container-fluid">
             <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    
+
                     <div class="card-body">
                         @include('admin.partials.alert')
-                    </div> 
+                    </div>
 
                     <div class="nk-block-head nk-block-head-sm">
                         <div class="nk-block-between">
@@ -137,7 +137,7 @@
                             </div>
                         </div><!-- .nk-block-between -->
                     </div><!-- .nk-block-head -->
-                    
+
                     <div class="nk-block nk-block-lg">
                         <div class="card card-preview">
                             <div class="card-inner">
@@ -178,12 +178,12 @@
                                             <td class="nk-tb-col">
                                                 <span class="tb-amount">{{ $user->name }}</span>
                                             </td>
-                                            
+
                                             <td class="nk-tb-col">
                                                 <a href="#viewModal{{ $user->id }}" data-toggle="modal">
                                                     <div class="user-card">
                                                         <div class="user-avatar bg-primary custom-avatar">
-                                                            
+
                                                                 {{-- <em class="icon ni ni-user-alt"></em> --}}
                                                                 <img src="{{ asset('public/assets/images/user/'.$user->image) }}">
                                                         </div>
@@ -207,7 +207,7 @@
                                             <td class="nk-tb-col">
                                                 <span class="tb-amount">{{ $newDate }}</span>
                                             </td>
-                                            
+
                                             @if ($user->status)
                                                 <td class="nk-tb-col tb-col-md">
                                                     <span class="tb-status text-success">Enable</span>
@@ -240,7 +240,7 @@
                                                                     <em class="icon ni ni-cross-circle-fill"></em>
                                                                 </button>
                                                             </form>
-                                                            
+
                                                         </li>
                                                     @else
                                                         <li class="nk-tb-action-hidden">
@@ -263,7 +263,10 @@
                                                             <div class="dropdown-menu dropdown-menu-right">
                                                                 <ul class="link-list-opt no-bdr">
                                                                     <li>
-                                                                        <a href="#viewModal{{ $user->id }}" data-toggle="modal">
+                                                                        {{-- <a href="#viewModal{{ $user->id }}" data-toggle="modal">
+                                                                            <em class="icon ni ni-eye"></em><span>View</span>
+                                                                        </a> --}}
+                                                                        <a href="{{ route('user.view', $user->id) }}">
                                                                             <em class="icon ni ni-eye"></em><span>View</span>
                                                                         </a>
                                                                     </li>
@@ -290,7 +293,7 @@
                                                                     <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Pass</span></a></li>
                                                                     <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend</span></a></li> --}}
                                                                 </ul>
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </li>
@@ -298,7 +301,7 @@
                                             </td>
                                             </tr><!-- .nk-tb-item  -->
                                             <!-- Modal Content Code -->
-                                            
+
                                             <!-- promotion Modal start -->
                                             <div class="modal fade" tabindex="-1" id="addPassword{{ $user->id }}">
                                                 <div class="modal-dialog modal-dialog-top" role="document">
@@ -312,15 +315,12 @@
                                                         <div class="modal-body">
                                                             <form action="{{ route('user.password', $user->id) }}" method="post" class="form-validate is-alter">
                                                                 @csrf
-                                                                
                                                                 <div class="form-group">
                                                                     <div class="form-control-wrap">
                                                                         <label class="form-label" for="default-06">Welcome </label><span style="color:  #2451d1 ; font-weight: bold;"> Mr/Mrs {{ $user->name }} *</span>
                                                                         <input type="password" class="form-control" id="promotion_price" name="password" placeholder="Password">
                                                                     </div>
                                                                 </div>
-                                                                
-                                                                
                                                                 <div class="form-group">
                                                                     <button type="submit" class="btn btn-md btn-primary">Save</button>
                                                                 </div>
@@ -331,8 +331,8 @@
                                             </div>
                                             <!-- promotion Modal end -->
 
-                                            {{-- <!-- Modal -->
-                                            <div class="modal fade" tabindex="-1" id="viewModal{{$user->id}}">
+                                            <!-- Modal -->
+                                            {{-- <div class="modal fade" tabindex="-1" id="viewModal2{{$user->id}}">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -425,9 +425,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- modal End --> --}}
-                                       
+                                            </div> --}}
+                                            <!-- modal End -->
+
                                             <!-- Delete Modal -->
                                                 <div class="modal fade" tabindex="-1" id="DeleteModal{{$user->id}}">
                                                     <div class="modal-dialog" role="document">
@@ -466,7 +466,7 @@
 @endsection
 
 @section('js')
-	
+
 	<script type="text/javascript">
 
         @if (count($errors) > 0)

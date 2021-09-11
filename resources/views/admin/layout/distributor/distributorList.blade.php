@@ -33,7 +33,7 @@
                             <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                 <div class="toggle-expand-content" data-content="pageMenu">
                                 <ul class="nk-block-tools g-3">
-                                    
+
                                     <li class="nk-block-tools-opt">
                                         <a href="#" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
                                         <a href="{{route('distributor.add')}}" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Add New Distributor</span></a>
@@ -59,9 +59,8 @@
                                         </th>
                                         <th class="nk-tb-col"><span class="sub-text">Distributor Name</span></th>
                                         <th class="nk-tb-col tb-col-mb"><span class="sub-text">Contact</span></th>
-                                        <!-- <th class="nk-tb-col tb-col-md"><span class="sub-text">Proprietor Name</span></th> -->
-                                        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Zone</span></th>
                                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Division</span></th>
+                                        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Zone</span></th>
                                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Base</span></th>
                                         <th class="nk-tb-col nk-tb-col-tools text-right">
                                         </th>
@@ -81,7 +80,7 @@
                                                 <span>
                                                     <a href="#modalImage{{ $distributor->id }}" data-toggle="modal">
                                                     @if(!empty($distributor->image_distributot))
-                                                    <img class = "customImg" src="{{ asset('public/assets/images/distributor/'.$distributor->image_distributot) }}" ></span>
+                                                    <img class = "customImg" src="{{ asset('assets/images/distributor/'.$distributor->image_distributot) }}" ></span>
                                                     @endif
                                                     </a>
                                                 </div>
@@ -105,19 +104,28 @@
                                         </td> -->
                                         <td class="nk-tb-col tb-col-lg" data-order="Email Verified - Kyc Unverified">
                                             <ul class="list-status">
-                                                <li><em class=""></em> <span>
-                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->division)->name }} </span></li>
+                                                <li><em class=""></em>
+                                                    <span>
+                                                    @if (!empty($distributor->division))
+                                                        {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->division)->name }}
+                                                    @endif
+                                                    </span>
+                                                </li>
                                                 <li><em class="icon ni"></em> <span></span></li>
                                             </ul>
                                         </td>
                                         <td class="nk-tb-col tb-col-lg">
                                             <span>
+                                                @if (!empty($distributor->zone))
                                                 {{ Devfaysal\BangladeshGeocode\Models\District::find($distributor->zone)->name }}
+                                                @endif
                                             </span>
                                         </td>
                                         <td class="nk-tb-col tb-col-lg">
                                             <span>
-                                                {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}
+                                                @if (!empty($distributor->base))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}
+                                                @endif
                                             </span>
                                         </td>
                                         <td class="nk-tb-col nk-tb-col-tools">
@@ -131,12 +139,12 @@
                                                             <!-- @if(Auth::user()->role == "Admin")
                                                                 <li><a href="#"><em class="icon ni ni-truck"></em><span>Mark as Delivered</span></a></li>
                                                             @endif -->
-                                                            
+
                                                                 <li><a href="{{ route('distributor.details', $distributor->id) }}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
                                                                 <li><a href="{{ route('distributor.moreInfo', $distributor->id )}}" ><em class="icon ni ni-activity-round"></em><span>Add Credit Limit</span></a></li>
                                                                 <li><a href="{{ route('distributor.edit', $distributor->id )}}"><em class="icon ni ni-repeat"></em><span>Edit</span></a></li>
                                                                 <!-- <li><a href="#DeleteModal{{$distributor->id}}" data-toggle="modal"><em class="icon ni ni-activity-round"></em><span>Delete Distributor</span></a></li> -->
-                                                                
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -149,11 +157,11 @@
                                         <div class="modal fade zoom" tabindex="-1" id="modalImage{{$distributor->id}}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-body">
-                                                    
+
                                                     @if(!empty($distributor->image_distributot))
                                                     <p><img src="{{ asset('public/assets/images/distributor/'.$distributor->image_distributot ) }}" height="300px" width="400px"></p>
                                                     @endif
-                                                            
+
                                                 </div>
                                             </div>
                                         </div>
