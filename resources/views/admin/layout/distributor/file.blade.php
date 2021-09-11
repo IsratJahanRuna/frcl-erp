@@ -140,48 +140,54 @@
                         </div><!-- .nk-block-between -->
                     </div><!-- .nk-block-head -->
                     
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <form action="{{ route('file.upload') }}" method="post" enctype="multipart/form-data">
+                <!-- Modal -->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add New File </h5>
+                                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                                    <em class="icon ni ni-cross"></em>
+                                </a>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="{{route('file.upload')}}" class="form-validate is-alter" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="row custom-banner-row">
-                                        <div class="col-md-4">
+                                    <div class="row g-gs">
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="default-06">File</label>
-                                                <div class="form-control-wrap">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input @error('file') is-invalid @enderror" value="{{ old('file') }}" id="customFile" name="file">
-                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                        @error('file')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                {{-- <label class="form-label" for="full-name">Full Name</label> --}}
-                                                <div class="form-control-wrap">
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name of File">
+                                                <label class="form-label" for="full-name">File <span style="top:-5px; color:red;">*</span></label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input @error('file') is-invalid @enderror" value="{{ old('file') }}" id="customFile" name="file" required>
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    @error('file')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                       
-                                       
-                                    </div>
-                                    <div class="row custom-banner-row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-outline-primary">Upload</button>
+                                        <div class="form-group">
+                                            <label class="form-label" for="full-name">File Name</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Name of File" required>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-outline-primary">Save Informations</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer bg-light">
+                                <span class="sub-text"></span>
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- modal End -->
 
                     <div class="nk-block nk-block-lg">
                         <div class="card card-preview">

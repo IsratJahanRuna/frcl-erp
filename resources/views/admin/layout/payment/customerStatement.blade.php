@@ -84,17 +84,17 @@
                             </thead>
                             <tbody>
                             <tr>
-                               <td colspan="3" style="text-align:center;"><b>Opening Balance</b></td>
-                               <td colspan="3" style="text-align:center;"><b>{{$payment->transaction_history->amount}}</b></td>
+                               <td colspan="4" style="text-align:center;"><b>Opening Balance</b></td>
+                               <td colspan="4" style="text-align:center;"><b>{{ $last->transaction_history->amount }}</b></td>
                             </tr>
                            
-                       
                         @foreach($payments as $key => $payment)
+                        @foreach($payment->payment as $pay)
                             @php 
-                                $credit_limit = $payment->distributor->credit_limit;
+                                $credit_limit = $payment->credit_limit;
                                 $sub_total = App\Order::where('status', 1)->first()->sub_total;
 
-                                $sales = $payment->orderss->total;
+                               
 
                                 $collection = 0;
 
@@ -105,17 +105,19 @@
                                         {{ $key+1 }}
                                     </td>
                                     <td>
-                                        {{ $payment->date }}
+                                        {{ $pay->date }}
                                     </td>
                                     <td>
-                                        {{ $payment->bank_name }}
+                                        {{ $pay->bank->name }}
                                     </td>
                                     <td>
-                                        {{ $payment->remarks }}
+                                        Order
+                                        {{-- Order: {{ $payment->order }} --}}
+                                        {{ $pay->remarks }}
                                     </td>
                                     <td>
                                     
-                                        {{ $sales }}
+                                       
                                     
                                     </td>
                                     <td>
@@ -130,6 +132,7 @@
                                    </td>
 
                                 </tr>
+                                @endforeach
                             @endforeach
                            
                             </tbody>

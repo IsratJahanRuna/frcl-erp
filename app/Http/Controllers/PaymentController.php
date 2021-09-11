@@ -297,14 +297,15 @@ class PaymentController extends Controller
         $from = Carbon::parse($request->from)->startOfDay()->toDateTimeString();
         $to = Carbon::parse($request->to)->endOfDay()->toDateTimeString();
         // Model::where('table_attribute', $from_request )->where('table_attribute', $from_request )->where('table_attribute', $from_request )->->get()
-        $payments = Payment::whereBetween('created_at', [$from, $to])->get();
+        $payments = Distributor::whereBetween('created_at', [$from, $to])->get();
         return view('admin.layout.payment.customerStatement' , compact('payments'));
     }
 
     public function customerPaymentInfo()
     {
-        $payments = Payment::with(['transaction_history'])->get();
-        return view('admin.layout.payment.customerStatement' , compact('payments' ));
+        $payments = Distributor::with(['payment.transaction_history'])->get();
+        $last = Payment::orderBy('id', 'desc')->first();
+        return view('admin.layout.payment.customerStatement' , compact('payments' ,'last'));
     }
 
     public function addBackDate()
@@ -390,12 +391,6 @@ class PaymentController extends Controller
         return redirect()->back()->with('msg','Payment Added Successfully');
     }
 
-    public function distributorCommisionBalance()
-    {
-        $distrbutors = Payment::all();
-        return view('admin.layout.distributor.distributorCommissionBalance' , compact('distrbutors'));
-    }
-
     public function transaction_show()
     {
         $transaction_history = Payment::all();
@@ -404,12 +399,11 @@ class PaymentController extends Controller
 
     public function transaction_details($id)
     {
-        // $campaign_product = CampaignProduct::with(['tag.products'])->where('campaign_id', $id)->first();
-        $transaction = TransactionHistory::with(['payment'])->where('distributor_id' , $id)->first();
-        dd($transaction);
-        $transaction_details = Payment::where('distributor_id' , $transaction->distributor_id)->get();
-        dd($transaction_details);
-        return view('admin.layout.payment.transaction_details' , compact('transaction_details'));
+        $transaction = Payment::with(['transaction_history'])->where('distributor_id' , $id)->first();
+        // dd($transaction);
+        // $transaction_details = Payment::where('distributor_id' , $transaction->distributor_id)->get();
+        // dd($transaction_details);
+        return view('admin.layout.payment.transaction_details' , compact( 'transaction'));
     }
 
 }

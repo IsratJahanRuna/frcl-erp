@@ -184,10 +184,10 @@
                                     $details2=json_decode($distributor->partnership_distibutor_percentage,  true);
                                     $n = 0;
                                 @endphp
-                                
+                                 <td>@php echo ++$n; @endphp</td>
                                 @foreach($details as $key=>$value)
                                 <tr>
-                                <td>@php echo ++$n; @endphp</td>
+                               
                                 <td><input type="text" value="{{$value}}"
                                         class="form-control"></td>
                                 

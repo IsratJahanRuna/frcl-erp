@@ -102,6 +102,7 @@ Route::group(['prefix'=>'admin'], function()
     Route::get('/distributor/details/document/{id}' , 'DistributorController@distributorDetailsDocument')->name('distributor.document');
     Route::get('distributor/division' , 'DistributorBalance@division')->name('division');
     Route::get('distributor/policy' , 'DistributorController@policy')->name('distributor.policy.print');
+
     Route::get('/distributor_file' , 'DistributorController@file')->name('file');
     Route::post('/distributor_file' , 'DistributorController@file_upload')->name('file.upload');
 
@@ -151,7 +152,7 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/payment/customer/information' , 'PaymentController@customerPaymentInfo')->name('customer.payment.info');
     Route::get('/payment/backDate/add', 'PaymentController@addBackDate')->name('payment.add.backDate');
     Route::post('/payment/backDate/create' , 'PaymentController@createBackDate')->name('payment.create.backDate');
-    Route::post('/distributorComssionBalance' , 'PaymentController@distributorCommisionBalance')->name('distributor.commission.balance');
+   
 
     //Transaction History
     Route::get('/transaction' , 'PaymentController@transaction_show')->name('transaction.show');

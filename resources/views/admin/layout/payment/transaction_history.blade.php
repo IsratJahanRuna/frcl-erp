@@ -183,7 +183,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       @foreach($transaction_history->payment as $key=>$item)
+                                       @foreach($transaction_history as $key=>$item)
 
                                        <tr class="nk-tb-item">
                                         {{--  <td class="nk-tb-col nk-tb-col-check">
@@ -200,13 +200,7 @@
                                         <td class="nk-tb-col">
                                             <a href="#viewModalA{{ $item->id }}" data-toggle="modal">
                                                 <div class="user-card custom-user-card">
-                                                    @if($item->image_distributot != null)
-                                                    <div class="user-avatar bg-primary custom-avatar">
-                                                        
-                                                            {{-- <em class="icon ni ni-user-alt"></em> --}}
-                                                            <img src="{{ $item->distributor->image_distributot }}">
-                                                    </div>
-                                                    @endif
+                                                    
                                                     <div class="user-info custom-user-info">
                                                         <span class="tb-lead">
                                                             <span style="font-weight: bold;">Trade Name: </span>
@@ -291,7 +285,7 @@
                                                                     </a>
                                                                 </li> --}}
                                                                 <li>
-                                                                    <a href="{{ route('transaction.details' , $item->distributor_id) }}">
+                                                                    {{-- <a href="{{ route('transaction.details' , $item->distributor_id) }}"> --}}
                                                                         <em class="icon ni ni-eye"></em>
                                                                         <span>Details</span>
                                                                     </a>
