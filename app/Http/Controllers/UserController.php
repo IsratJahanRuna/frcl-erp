@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Role;
 use App\User;
 use Throwable;
@@ -25,7 +26,8 @@ class UserController extends Controller
     public function userAdd()
     {
         $roles = Role::where('status' , 1)->orderBy('id' , 'desc')->get();
-    	return view ('admin.layout.user.userAdd', compact('roles'));
+        $departments = Department::where('status' , 1)->orderBy('id' , 'desc')->get();
+    	return view ('admin.layout.user.userAdd', compact('roles', 'departments'));
     }
 
     public function create(Request $request)
@@ -244,9 +246,9 @@ class UserController extends Controller
                     ->with('msg' , 'Division Activated Successfully');
     }
 
-    public function zone()
+    public function zone(Request $request , $id)
     {
-        $zones = District::all();
+        $zones = District::where('division_id', $id)->get();
         $total_zone = $zones->count();
         $active_zone = District::where('status' , 1)->get();
         $active = $active_zone->count();
@@ -254,9 +256,9 @@ class UserController extends Controller
                     ->with('msg' , 'Zone Activated Successfully');
     }
 
-    public function base()
+    public function base(Request $request , $id)
     {
-        $bases = Upazila::all();
+        $bases = Upazila::where('district_id', $id)->get();
         $total_base = $bases->count();
         $active_base = Upazila::where('status' , 1)->get();
         $active = $active_base->count();
