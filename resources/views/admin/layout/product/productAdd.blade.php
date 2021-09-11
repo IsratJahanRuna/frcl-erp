@@ -47,8 +47,8 @@
                                     <label class="form-label" for="fv-topics">Category <span style="top:-5px; color:red;">*</span></label reqired>
                                     <div class="form-control-wrap ">
                                         <select class="form-control form-select" id="fv-topics" name="sub_category_id" data-placeholder="Select a option" required>
-
-                                            <option value="">Select a category</option>
+ 
+                                           <option value="">Select a category</option>
                                             {{-- @foreach(App\Category::orderBy('name', 'asc')->where('sub_category', 0)->where('status' , 1)->get() as $parent)
                                             <option value="{{ $parent->id }}">{{ $parent->name }}</option>
                                             @foreach (App\Category::orderBy('name', 'asc')->where('sub_category', $parent->id)->where('status' , 1)->get() as $child)
@@ -96,6 +96,7 @@
                                     <label class="form-label" for="fv-topics">Brand <span style="top:-5px; color:red;">*</span></label >
                                     <div class="form-control-wrap ">
                                         <select class="form-control form-select" id="fv-topics" name="brand_id" data-placeholder="Select a option" required>
+                                            <option value="">Select a Brand</option>
                                             @foreach($brands as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
                                             @endforeach
@@ -107,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Distributor Price <span style="top:-5px; color:red;">*</span></label reqired>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="fv-email" name="distributor_price" placeholder="1000. Taka">
+                                        <input type="text" class="form-control" id="fv-email" name="distributor_price" placeholder="1000. Taka" required>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-dim btn-outline-primary" >Add</button>
+                                    <button type="submit" class="btn btn-dim btn-outline-primary" >Add Product</button>
                                     <a href="{{ URL::previous() }}" class="btn btn-outline-info" onclick="myFunction()">Back</a>
                                 </div>
                             </div>

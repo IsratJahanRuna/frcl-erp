@@ -202,11 +202,7 @@
                                             </span>
                                         </div>
                                         @endif
-                                        <td class="nk-tb-col nk-tb-col-tools">
-                                            <ul class="nk-tb-actions gx-1">
-                                                
-                                            </ul>
-                                        </td>
+                                       
                                         <div class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
                                                 <li>
@@ -215,7 +211,7 @@
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <ul class="link-list-opt no-bdr">
                                                                 <li><a href="#mymodel{{ $bank->id }}" data-toggle="modal"><em class="icon ni ni-repeat"></em><span>Edit Bank</span></a></li>
-                                                                <li><a href=""><em class="icon ni ni-repeat"></em><span>Print Bank Information</span></a></li>
+                                                                {{-- <li><a href=""><em class="icon ni ni-repeat"></em><span>Print Bank Information</span></a></li> --}}
                                                             </ul>
                                                         </div>
                                                     </div>

@@ -18,6 +18,7 @@ use Devfaysal\BangladeshGeocode\Models\Division;
 use infobip\api\configuration\BasicAuthConfiguration;
 use infobip\api\model\sms\mt\send\textual\SMSTextualRequest;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\File;
 
 class DistributorController extends Controller
 {
@@ -37,10 +38,11 @@ class DistributorController extends Controller
     // Show Distributor form
     public function add()
     {
+        $files = File::where('id' , '=', 1)->first();
+        $file = File::where('id' , '=', 2)->first();
         $divisions = Division::where('status' , 1)->get();
-        return view ('admin.layout.distributor.distributorAdd', compact('divisions'))->with('msg','New Distributor Added Successfully');
-
-		
+        return view ('admin.layout.distributor.distributorAdd', compact('divisions' , 'files' , 'file'))
+        ->with('msg','New Distributor Added Successfully');
     }
 
     public function policy()
@@ -257,18 +259,6 @@ class DistributorController extends Controller
         return redirect()->route('distributor.list')->with('msg','Distributor Information Updated Successfully'); 
     }
 
-    // public function delete($id)
-    // {
-    //     $distributor = Distributor::findOrFail($id)->first();
-    //     unlink('public/assets/images/distributor/'.$distributor->image_distributot);
-    //     unlink('public/assets/images/distributor/'.$distributor->image_nominee);
-    //     unlink('public/assets/images/distributor/'.$distributor->image_trade);
-    //     unlink('public/assets/images/distributor/'.$distributor->image_nid);
-    //     unlink('public/assets/images/distributor/'.$distributor->image_form);
-    //     $distributor->delete();
-    //     return redirect()->route('distributor.list')->with('msg','Distributor Information Deleted Successfully');
-    // }
-
     public function distributorPending()
     {
         $divisions = Division::all();
@@ -351,35 +341,12 @@ class DistributorController extends Controller
     public function dbStockReportSearch(Request $request)
     {
         $search = $request->distributor_id;
-        // dd($category);
-        
-            $distributor_stock = Distributor::where('id' , $search)->with(['order.order'])->first();
+       
+        $distributor_stock = Distributor::where('id' , $search)->with(['order.order'])->first();
     
-        // $distributor = Distributor::where('id' , $search)->get();
-        // $distributor = Distributor::with(['order'])->where('distributor_id' , $search)->get();
-        // dd($distributor);
         $distributor_report = Distributor::where('active' , 1)->get();
-        // dd($request->date);
-		// $distributors = \App\Distributor::where([ 
-        //     ['id', 'LIKE', '%' . $category . '%'],
-        //     ])->get();
-		
-		// $category = $request->distributor_id;
-        // // dd($request->distributor_id);
-        // if($category !=null)
-        // {
-        //     $orders = Order::where([ 
-        //         ['distributor_id', 'LIKE', '%' . $category . '%'],
-        //         ])->get();
-        // }
-        
-        // if(empty($category) && empty($distributors)) 
-        // {
-        //     Session::flash('danger', "You didn't select any search.");
-        //     return redirect() -> back();
-        // }
 
-            return view('admin.layout.distributor.distributorStockReport', compact('distributor_stock' , 'distributor_report'));
+        return view('admin.layout.distributor.distributorStockReport', compact('distributor_stock' , 'distributor_report'));
     }
 
     public function dbStockReportEdit(Request $request , $id)
@@ -412,5 +379,36 @@ class DistributorController extends Controller
         $distributors = Distributor::find($id);
         return view('admin.layout.distributor.distributorDetailsInformation' , compact('distributors' , 'divisions'));
     }
+
+    public function file()
+    {
+        $files = File::all();
+        return view ('admin.layout.distributor.file' , compact('files'));
+    }
+
+    public function file_upload(Request $request)
+    {
+
+        $file = $request->file('file');
+
+        if ($file) {
+            
+            $filename = $file->getClientOriginalName();
+            $filesize = $file->getClientSize();
+            $extension = $file->getClientOriginalExtension();
+
+            $file_title = uniqid().time().'.'.$extension;
+            $file->move('public/assets/images/file', $file_title);
+
+
+            $multi_images = File::create([
+                'file' => $file_title,
+                'name' =>$request->name,
+            ]);
+        }
+        session()->flash('success', 'File uploaded successfully');
+        return redirect()->back();
+    }
+
 
 }

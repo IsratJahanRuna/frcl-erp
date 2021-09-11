@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Proprietor Present Address Village/Ward</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_present_address" placeholder="Enter Address" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_present_address" placeholder="Enter Address" >
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">District</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_present_district" placeholder="B. Baria" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_present_district" placeholder="B. Baria" >
                         </div>
                     </div>
                 </div>
@@ -101,15 +101,15 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Proprietor Permanent Address Village/Ward</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_address" placeholder="Enter Address" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_address" placeholder="Enter Address" >
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="fv-email">Post office : <span style="top:-5px; color:red;">*</span></label reqired>
+                        <label class="form-label" for="fv-email">Post office : </label >
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_PO" placeholder="Post Office" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_PO" placeholder="Post Office" >
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Thana</label >
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_thana" placeholder="B. Baria Sadar" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_thana" placeholder="B. Baria Sadar" >
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">District</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_district" placeholder="B. Baria" required>
+                            <input type="text" class="form-control" id="fv-email" name="proprietor_permanent_district" placeholder="B. Baria" >
                         </div>
                     </div>
                 </div>
@@ -148,15 +148,15 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Mobile (Alternative) </label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="mobileALT" placeholder="(+88-XXXXXXXXXXX)" pattern="[0-9+]{11,14}" required>
+                            <input type="text" class="form-control" id="fv-email" name="mobileALT" placeholder="(+88-XXXXXXXXXXX)" pattern="[0-9+]{11,14}">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-label" for="fv-email">Telephone(Office) : <span style="top:-5px; color:red;">*</span></label reqired>
+                        <label class="form-label" for="fv-email">Telephone(Office) : </label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="telephone_office" placeholder="0851423223" required>
+                            <input type="text" class="form-control" id="fv-email" name="telephone_office" placeholder="0851423223">
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">House</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="fv-email" name="telephone_house" placeholder="(+88-XXXXXXXXXXX)" required>
+                            <input type="text" class="form-control" id="fv-email" name="telephone_house" placeholder="(+88-XXXXXXXXXXX)" >
                         </div>
                     </div>
                 </div>
@@ -223,7 +223,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Nominee : <span style="top:-5px; color:red;">*</span></label reqired>
                         <div class="form-control-wrap">
-                            <input type="file" class="form-control" id="fv-email" name="image_nominee">
+                            <input type="file" class="form-control" id="fv-email" name="image_nominee" reqired>
                         </div>
                     </div>
                 </div>
@@ -231,7 +231,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">Trade license : <span style="top:-5px; color:red;">*</span></label reqired>
                         <div class="form-control-wrap">
-                            <input type="file" class="form-control" id="fv-email" name="image_trade">
+                            <input type="file" class="form-control" id="fv-email" name="image_trade" reqired>
                         </div>
                     </div>
                 </div>
@@ -239,7 +239,7 @@
                     <div class="form-group">
                         <label class="form-label" for="fv-email">NID (Image) : <span style="top:-5px; color:red;">*</span></label reqired>
                         <div class="form-control-wrap">
-                            <input type="file" class="form-control" id="fv-email" name="image_nid">
+                            <input type="file" class="form-control" id="fv-email" name="image_nid" reqired>
                         </div>
                     </div>
                 </div>
@@ -262,9 +262,22 @@
                     </div>
                 </div>
 
-               <div>
-               <a href="{{route('distributor.policy.print')}}" target="_blank" class="btn btn-round btn-primary"><span>Click, Policy</span></a>
-               </div>
+                <div>
+                    @if(!empty($file->file))
+                    <a href="{{ asset('public/assets/images/file/'.$file->file) }}" target="_blank" class="btn btn-round btn-primary">
+                        <span>Click, Policy</span></a>
+                       
+                        @endif
+                   {{-- <a href="{{route('distributor.policy.print')}}" target="_blank" class="btn btn-round btn-primary"><span>Click, Policy</span></a> --}}
+                   </div>
+                  
+                   <div>
+                    @if(!empty($files->file))
+                    <a href="{{ asset('public/assets/images/file/'.$files->file) }}" target="_blank" class="btn btn-round btn-primary">
+                        <span>Nominee Form</span></a>
+                        @endif
+                   {{-- <a href="{{route('distributor.policy.print')}}" target="_blank" class="btn btn-round btn-primary"><span>Click, Policy</span></a> --}}
+                   </div>
 
                 <div class="col-md-12">
                     <div class="custom-control custom-control-sm custom-checkbox notext">

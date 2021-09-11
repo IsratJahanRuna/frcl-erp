@@ -53,6 +53,7 @@
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.division')}}" class="nk-menu-link"><span class="nk-menu-text">Division Manage</span></a>
                                     </li>
+<<<<<<< HEAD
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.zone')}}" class="nk-menu-link"><span class="nk-menu-text">Zone Manage</span></a>
                                     </li>
@@ -60,6 +61,9 @@
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.base')}}" class="nk-menu-link"><span class="nk-menu-text">Base Manage</span></a>
                                     </li>
+=======
+                                    
+>>>>>>> 63822c5d6d438f2950012ecfce84dd903ff06146
 
                                     <li class="nk-menu-item">
                                         <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
@@ -89,6 +93,9 @@
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('db.stock.report')}}" class="nk-menu-link"><span class="nk-menu-text">DB Stock Report</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{route('file')}}" class="nk-menu-link"><span class="nk-menu-text">File Upload</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('distributorm.index')}}" class="nk-menu-link"><span class="nk-menu-text">Distributor Mullayons List</span></a>

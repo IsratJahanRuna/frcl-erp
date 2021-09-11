@@ -49,6 +49,7 @@ Route::group(['prefix'=>'admin'], function()
     Route::get('/user/delete/{id}' , 'UserController@delete')->name('user.delete');
     Route::post('/user/active/{id}' , 'UserController@UserActive')->name('user.active');
     Route::post('/user_password/{id}' , 'UserController@user_password')->name('user.password');
+    Route::post('/user_password_update/{id}' , 'UserController@user_password_update')->name('user.passwordUpdate');
     Route::post('/division/active/{id}' , 'UserController@divisionActive')->name('division.active');
     Route::get('/division/manage' , 'UserController@division')->name('user.division');
     Route::get('/zone/manage/' , 'UserController@zone')->name('user.zone');
@@ -102,6 +103,8 @@ Route::group(['prefix'=>'admin'], function()
     Route::get('/distributor/details/document/{id}' , 'DistributorController@distributorDetailsDocument')->name('distributor.document');
     Route::get('distributor/division' , 'DistributorBalance@division')->name('division');
     Route::get('distributor/policy' , 'DistributorController@policy')->name('distributor.policy.print');
+    Route::get('/distributor_file' , 'DistributorController@file')->name('file');
+    Route::post('/distributor_file' , 'DistributorController@file_upload')->name('file.upload');
 
 
     //product

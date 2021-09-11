@@ -47,21 +47,21 @@
                                         <form method="post" action="{{route('role.create')}}" class="form-validate is-alter">
                                             @csrf
                                             <div class="form-group">
-                                                <label class="form-label" for="full-name">Role</label>
+                                                <label class="form-label" for="full-name">Role<span style="top:-5px; color:red;">*</span></label>
                                                 <div class="form-control-wrap">
                                                     <input type="text" class="form-control" id="full-name" name="name" placeholder="General Manager" required>
                                                 </div>
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label class="form-label" for="fv-message">Description</label>
+                                                <label class="form-label" for="fv-message">Description<span style="top:-5px; color:red;">*</span></label>
                                                 <div class="form-control-wrap">
-                                                    <textarea class="form-control form-control-sm" id="fv-message" name="description" placeholder="Write Description"></textarea>
+                                                    <textarea class="form-control form-control-sm" id="fv-message" name="description" placeholder="Write Description" required></textarea>
                                                 </div> 
                                             </div>
                                         
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-lg btn-primary">Save Informations</button>
+                                                <button type="submit" class="btn btn-outline-primary">Save Informations</button>
                                             </div>
                                         </form>
                                     </div>
