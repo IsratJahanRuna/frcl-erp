@@ -13,9 +13,9 @@
                         <div class="card-inner">
                             <div class="card-body">
                                 @include('admin.partials.alert')
-                            </div> 
+                            </div>
                         <center> <h4 class="title nk-block-title">User Information</h4><br></center>
-                        
+
                         <form method="post" action="{{route('user.create')}}" class="form-validate" enctype="multipart/form-data">
                         @csrf
 
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-email">Satus</label>
+                                    <label class="form-label" for="fv-email">Status</label>
                                     <div class="form-control-wrap">
                                         <select name="status" class="form-control">
                                             <option value="1">Active</option>
@@ -87,11 +87,11 @@
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Department Name</label>
                                     <div class="form-control-wrap">
+                                        {{-- @dd($departments) --}}
                                         <select class="form-control form-select" id="fv-topics" name="department" data-placeholder="Select a option" required>
-                                            <option value="Factory">Factory</option>
-                                            <option value="Sales & Marketing">Sales & Marketing</option>
-                                            <option value="Accounts">Accounts</option>
-                                            <option value="Supply Chain">Supply Chain</option>
+                                            @foreach($departments as $department)
+                                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="fv-email">Password <span style="top:-5px; color:red;">*</span></label>
@@ -144,13 +144,18 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
+<<<<<<< HEAD
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-dim btn-outline-primary" >Add User Information</button>
+=======
                                 <div class="form-group"> 
                                     <button type="submit" class="btn btn-outline-primary" >Add User Information</button>
+>>>>>>> 202a48d944d069ddaa9f1d3ec24bc2fce52065f1
                                     <a href="{{ URL::previous() }}" class="btn btn-outline-info" onclick="myFunction()">Back</a>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </form>
                     </div><!-- .card-preview -->
                 </div><!-- .nk-block -->
@@ -171,7 +176,7 @@
             </div>
             <div class="modal-body">
                 <p>Save User Information</p>
-                
+
                 <button type="submit" class="btn btn-success">Confirm</button>
                 <button class="btn btn-danger" >Cancel</button>
             </div>

@@ -25,7 +25,7 @@
 <div class="card">
     <h6 class="title nk-block-title">Distributor Information</h6>
     <div class="card-inner">
-        <center><h4 class="title nk-block-title border-dark">Distributor Information</h4></center><hr><br>
+        <h4 class="title nk-block-title border-dark">Distributor Information</h4><hr><br>
         <form method="post" action="{{route('distributor.create')}}" class="form-validate" enctype="multipart/form-data" id="form">
             @csrf
 

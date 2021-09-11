@@ -37,6 +37,9 @@ class ProductController extends Controller
     {
         $from = Carbon::parse($request->from)->startOfDay()->toDateTimeString();
         $to = Carbon::parse($request->to)->endOfDay()->toDateTimeString();
+        // $category = $request->sub_category_id;
+        // $category = Category::where('id', $category_id)->get();
+        // dd($category_id);
 
         $products = Product::where('sub_category_id', $request->sub_category_id)
                             ->orWhere('id', $request->product_id)
@@ -47,7 +50,7 @@ class ProductController extends Controller
 
         $categories = Category::all();
 
-        return view('admin.layout.product.productList' , compact('products' , 'categories' ));
+        return view('admin.layout.product.productList' , compact('products' , 'categories'));
     }
 
     public function productAdd()

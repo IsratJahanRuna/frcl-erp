@@ -33,6 +33,9 @@
                             <span class="nk-menu-text">User Manage</span>
                         </a>
                         <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="{{route('department')}}" class="nk-menu-link"><span class="nk-menu-text">Department Manage</span></a>
+                            </li>
                         <li class="nk-menu-item">
                                 <a href="{{route('role')}}" class="nk-menu-link"><span class="nk-menu-text">Role Manage</span></a>
                             </li>
@@ -53,18 +56,36 @@
                                     <li class="nk-menu-item">
                                         <a href="{{route('user.division')}}" class="nk-menu-link"><span class="nk-menu-text">Division Manage</span></a>
                                     </li>
-                                    
+<<<<<<< HEAD
+                                    {{-- <li class="nk-menu-item">
+=======
+<<<<<<< HEAD
+                                    <li class="nk-menu-item">
+>>>>>>> 202a48d944d069ddaa9f1d3ec24bc2fce52065f1
+                                        <a href="{{route('user.zone')}}" class="nk-menu-link"><span class="nk-menu-text">Zone Manage</span></a>
+                                    </li>
 
-                                    <!-- <li class="nk-menu-item">
+                                    <li class="nk-menu-item">
+                                        <a href="{{route('user.base')}}" class="nk-menu-link"><span class="nk-menu-text">Base Manage</span></a>
+<<<<<<< HEAD
+                                    </li> --}}
+=======
+                                    </li>
+=======
+                                    
+>>>>>>> 63822c5d6d438f2950012ecfce84dd903ff06146
+>>>>>>> 202a48d944d069ddaa9f1d3ec24bc2fce52065f1
+
+                                    <li class="nk-menu-item">
                                         <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
                                     </li> -->
                                 </ul><!-- .nk-menu-sub -->
                             </li><!-- .nk-menu-item -->
 
-                            <!-- <li class="nk-menu-item">
+                             <li class="nk-menu-item">
                                 <a href="{{route('permission.list')}}" class="nk-menu-link"><span class="nk-menu-text">Permission Manage</span></a>
-                            </li> -->
-                        </ul><!-- .nk-menu-sub -->
+                            </li>
+                        </ul>
                     </li><!-- .nk-menu-item -->
                     <li class="nk-menu-item has-sub">
                         <a href="#" class="nk-menu-link nk-menu-toggle">
@@ -84,15 +105,19 @@
                             <li class="nk-menu-item">
                                 <a href="{{route('db.stock.report')}}" class="nk-menu-link"><span class="nk-menu-text">DB Stock Report</span></a>
                             </li>
+<<<<<<< HEAD
+                            {{-- <li class="nk-menu-item">
+=======
                             <li class="nk-menu-item">
                                 <a href="{{route('file')}}" class="nk-menu-link"><span class="nk-menu-text">File Upload</span></a>
                             </li>
                             <li class="nk-menu-item">
+>>>>>>> 202a48d944d069ddaa9f1d3ec24bc2fce52065f1
                                 <a href="{{route('distributorm.index')}}" class="nk-menu-link"><span class="nk-menu-text">Distributor Mullayons List</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{route('distributorm.create')}}" class="nk-menu-link"><span class="nk-menu-text">Distributor Mullayons Form</span></a>
-                            </li>
+                            </li> --}}
 
                         </ul><!-- .nk-menu-sub -->
                     </li>

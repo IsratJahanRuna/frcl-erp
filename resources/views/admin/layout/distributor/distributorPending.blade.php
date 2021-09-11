@@ -78,8 +78,8 @@
                                         </th>
                                         <th class="nk-tb-col"><span class="sub-text">Distributor Name</span></th>
                                         <th class="nk-tb-col tb-col-mb"><span class="sub-text">Contact</span></th>
-                                        <th class="nk-tb-col tb-col-md"><span class="sub-text">Zone</span></th>
                                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Division</span></th>
+                                        <th class="nk-tb-col tb-col-md"><span class="sub-text">Zone</span></th>
                                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Base</span></th>
                                         <th class="nk-tb-col tb-col-md"><span class="sub-text">Status</span></th>
                                         <th class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></th>
@@ -118,32 +118,38 @@
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span>
-                                                {{ Devfaysal\BangladeshGeocode\Models\District::find($distributor->zone)->name }}
+                                                @if (!empty($distributor->division))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->division)->name }}
+                                                @endif
                                             </span>
                                         </td>
                                         <td class="nk-tb-col tb-col-lg" data-order="Email Verified - Kyc Unverified">
                                             <ul class="list-status">
-                                                <li><em class=""></em> <span>
-                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->division)->name }}
-                                                </span></li>
+                                                <li><em class=""></em>
+                                                    <span>
+                                                    @if (!empty($distributor->zone))
+                                                        {{ Devfaysal\BangladeshGeocode\Models\District::find($distributor->zone)->name }}
+                                                    @endif
+                                                    </span>
+                                                </li>
                                                 <li><em class="icon ni"></em> <span></span></li>
                                             </ul>
                                         </td>
                                         <td class="nk-tb-col tb-col-lg">
-                                            <span>
+                                            @if (!empty($distributor->base))
                                                 {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}
-                                            </span>
+                                            @endif
                                         </td>
                                         <td class="nk-tb-col tb-col-md">
                                             <span class="tb-status text-danger">InActive</span>
                                         </td>
-                                        
+
                                         <td class="nk-tb-col tb-col-md">
                                             <span class="tb-status text-success">
                                                 <a href="#modalAlert{{ $distributor->id }}" data-toggle="modal" class="btn btn-success">Accept</a>
                                             </span>
                                         </td>
-                                        
+
                                         <td class="nk-tb-col nk-tb-col-tools">
                                             <ul class="nk-tb-actions gx-1">
                                                 <li>
@@ -153,7 +159,7 @@
                                                             <ul class="link-list-opt no-bdr">
 
                                                                 <li><a href="{{route('distributor.details' , $distributor->id)}}"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                                
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -175,12 +181,12 @@
                                                                     You’ve successfully Added <br>
                                                                     <strong>
                                                                         <a href=""></a>
-                                                                    </strong> 
+                                                                    </strong>
                                                                     <a href="" >{{ $distributor->distributor_name }}'s </a>
                                                                     <strong>
                                                                         <a href=""> </a>
-                                                                    </strong> 
-                                                                    
+                                                                    </strong>
+
                                                                     </div>
                                                             </div>
                                                             <div class="nk-modal-action">

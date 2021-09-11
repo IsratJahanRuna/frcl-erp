@@ -45,7 +45,7 @@
             transform: scale(1.15);
         }
 
-        
+
         @supports (display: grid) {
             .gallery {
                 display: grid;
@@ -161,14 +161,14 @@
                                     </a>
                                     <div class="toggle-expand-content" data-content="more-options">
                                         <ul class="nk-block-tools g-3">
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
                             </div> --}}
                         </div><!-- .nk-block-between -->
                     </div><!-- .nk-block-head -->
-                    
+
                     <div class="nk-block nk-block-lg">
                         <div class="card card-preview">
                         	<span class="badge badge-dark" style="font-size: 14px; padding: 5px;">Distorbutor Code: <small>{{ $distributors->random_number }}</small></span>
@@ -184,16 +184,23 @@
                                         <tr style="vertical-align: initial;">
                                             <td><b>Distributor Point</b></td>
                                             <td><b>:</b></td>
-                                            <td><b>{{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributors->base)->name }} , 
-                                                {{ Devfaysal\BangladeshGeocode\Models\District::find($distributors->zone)->name }} , 
-                                                {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributors->division)->name }}</b></td>
+                                            <td><b>
+                                                @if (!empty($distributor->base))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->base)->name }}
+                                                @endif
+                                                @if (!empty($distributor->zone))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\District::find($distributor->zone)->name }}
+                                                @endif
+                                                @if (!empty($distributor->division))
+                                                    {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->division)->name }}
+                                                @endif
                                         </tr>
                                         <tr style="vertical-align: initial;">
                                             <td><b>Proprietor Name</b></td>
                                             <td><b>:</b></td>
                                             <td>{{ $distributors->proprietor_name }}</td>
                                         </tr>
-                                        
+
                                         <tr style="vertical-align: initial;">
                                             <td><b>Father/Husabnd Name</b></td>
                                             <td><b>:</b></td>
@@ -203,7 +210,7 @@
                                             <td><b>Proprietor Present Address</b></td>
                                             <td><b>:</b></td>
                                             <td>
-                                                
+
                                                 {{ $distributors->proprietor_present_address }}
                                         </td>
                                         </tr>
@@ -305,10 +312,10 @@
                                             <td>
                                                 {{ $distributors->proprietor_permanent_district }}
                                             </td>
-                                        
-                                       
+
+
                                     </table>
-                              
+
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="orders_product_list_div mt-3">
@@ -329,16 +336,16 @@
 	                            		@endphp
 	                            		<tbody>
 
-                                          
+
                                             <tr>
                                                 <td>{{$num}}</td>
-                                            
+
                                                 <td>
                                                     <a href="#viewModal{{ $distributors->id }}" data-toggle="modal">
                                                         <img src="{{ asset('public/assets/images/distributor/'.$distributors->image_distributot) }}" alt="image" width="100" style="margin-bottom: 1.25rem; border-radius: 3px; display: block;">
                                                     </a>
                                                 </td>
-                                            
+
                                                 <td>
                                                     <a href="#viewModal2{{ $distributors->id }}" data-toggle="modal">
                                                         <img src="{{ asset('public/assets/images/distributor/'.$distributors->image_nominee) }}" alt="image" width="100" style="margin-bottom: 1.25rem; border-radius: 3px; display: block;">
@@ -348,7 +355,7 @@
                                                 <td>
                                                     <a href="#viewModal3{{ $distributors->id }}" data-toggle="modal">
                                                         <img src="{{ asset('public/assets/images/distributor/'.$distributors->image_trade) }}" alt="image" width="100" style="margin-bottom: 1.25rem; border-radius: 3px; display: block;">
-                                                    </a>  
+                                                    </a>
                                                 <br></td>
                                                 <td>
                                                     <a href="#viewModal4{{ $distributors->id }}" data-toggle="modal">
@@ -431,8 +438,8 @@
                                             <!-- view Modal end -->
                                         </tbody>
                                     </table>
-	                            		
-	                            		
+
+
 	                            	</div>
 	                            </div>
                             </div>

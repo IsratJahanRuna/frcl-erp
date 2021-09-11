@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin'], function()
     //User Management
     Route::get('/userList' , 'UserController@list')->name('user.list');
     Route::get('/userAdd' , 'UserController@userAdd')->name('user.add');
+    Route::get('/user/view/{id}' , 'UserController@view')->name('user.view');
     Route::post('/user/create' , 'UserController@create')->name('user.create');
     Route::get('/user/edit/{id}' , 'UserController@edit')->name('user.edit');
     Route::post('/user/Update/{id}' , 'UserController@update')->name('user.update');
@@ -51,10 +52,10 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/user_password_update/{id}' , 'UserController@user_password_update')->name('user.passwordUpdate');
     Route::post('/division/active/{id}' , 'UserController@divisionActive')->name('division.active');
     Route::get('/division/manage' , 'UserController@division')->name('user.division');
-    Route::get('/zone/manage/{id}' , 'UserController@zone')->name('user.zone');
+    Route::get('/zone/manage/' , 'UserController@zone')->name('user.zone');
     Route::post('/zone/active/{id}' , 'UserController@zoneActive')->name('zone.active');
     Route::post('/zone/Update/{id}' , 'UserController@updateZone')->name('user.zone.update');
-    Route::get('/base/manage/{id}' , 'UserController@base')->name('user.base');
+    Route::get('/base/manage/' , 'UserController@base')->name('user.base');
     Route::post('/base/Update/{id}' , 'UserController@updateBase')->name('user.base.update');
     Route::post('/base/active/{id}' , 'UserController@baseActive')->name('base.active');
 
@@ -66,6 +67,14 @@ Route::group(['prefix'=>'admin'], function()
     Route::post('/role/update/{id}' , 'RoleController@update')->name('role.update');
     Route::get('/role/delete/{id}' , 'RoleController@delete')->name('role.delete');
     Route::post('/role/active/{id}' , 'RoleController@roleActive')->name('role.active');
+
+    //department Manage
+    Route::get('/department/view' , 'DepartmentController@index')->name('department');
+    Route::post('/department/create' , 'DepartmentController@create')->name('department.create');
+    Route::get('/department/view/{id}' , 'DepartmentController@view')->name('department.view');
+    // Route::post('/role/update/{id}' , 'RoleController@update')->name('role.update');
+    // Route::get('/role/delete/{id}' , 'RoleController@delete')->name('role.delete');
+    Route::post('/department/active/{id}' , 'DepartmentController@departmentActive')->name('department.active');
 
     //Permission of roles
     Route::get('/permission' , 'PermissionController@index')->name('permission.list');

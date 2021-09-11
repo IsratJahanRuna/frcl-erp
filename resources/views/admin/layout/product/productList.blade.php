@@ -39,7 +39,7 @@
         <div class="nk-content-inner">
             <div class="nk-content-body">
                 <div class="nk-block-head nk-block-head-sm">
-                    
+
                 </div><!-- .nk-block-head -->
                 <div class="nk-block">
                     <div class="card card-stretch">
@@ -52,20 +52,20 @@
                                 <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-control-wrap ">
-                                        
+
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-control-wrap ">
-                                       
+
                                     </div>
                                 </div>
                             </div><div class="col-md-3">
                                 <div class="form-group">
                                     <div class="form-control-wrap ">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -107,29 +107,41 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label" for="fv-topics">Search</label>
-                                    <div class="form-control-wrap ">
+                                    {{-- <label class="form-label" for="fv-topics">Search</label> --}}
+                                    <div class="form-control-wrap mt-4 ">
                                         <button type="submit" class="btn btn-success"> View  </button>
+                                        <button type="button" onclick="printDiv()" class="btn btn-success mx-3">Print</button>
                                     </div>
                                 </div>
                             </div>
                     </form>
 
                         </div>
-                        
+
                     </div><!-- .card-tools -->
                 </div><!-- .card-title-group -->
             </div><!-- .card-inner -->
 
+
+
             @if($products->count() > 0)
-                <div class="nk-content-body">
+
                     <div class="nk-block">
                         <div class="card card-stretch">
                             <div class="card-inner-group">
                                 <hr>
+                                <div class="nk-content-body mb-3" id="printArea">
+                                    {{-- @if (isset($category))
+                                    <div class="container text-success ">
+                                        {{-- <h5><b>Prduct List of </b>{{ $category->name}} </h5> --}}
+                                        {{-- <p style="margin-left: 350px;">Number of records: {{ count($products) }}</p>
+                                    </div>
+                                    @endif --}}
                                 <div class="card-inner p-0">
+
                                     <div class="nk-tb-list nk-tb-ulist is-compact">
                                         <div class="btn-wrap">
+
                                             <!-- <span class="d-none d-md-block"><button class="btn btn-dim btn-outline-light disabled" style="background:red; color:black;"><b>print</b></button></span>
                                             <span class="d-md-none"><button class="btn btn-dim btn-outline-light btn-icon disabled"><em class="icon ni ni-arrow-right"></em></button></span> -->
                                         </div>
@@ -143,7 +155,7 @@
                                             <div class="nk-tb-col"><span class="sub-text">Status</span></div>
                                             <div class="nk-tb-col tb-col-md"><span class="sub-text">Action</span></div>
                                             <div class="nk-tb-col nk-tb-col-tools text-right">
-                                                
+
                                             </div>
                                         </div><!-- .nk-tb-item -->
                                         @foreach($products as $key=>$product)
@@ -188,9 +200,9 @@
                                                     &#2547; {{ $product->corporate_price }}
                                                 </span>
                                             </div>
-                                            
-                                           
-                                            
+
+
+
                                             @if($product->status==1)
                                                 <div class="nk-tb-col tb-col-md">
                                                 <span class="tb-status text-success">Active</span>
@@ -200,8 +212,8 @@
                                                 <span class="tb-status text-danger">InActive</span>
                                                 </div>
                                             @endif
-                                            
-                                            
+
+
                                             <div class="nk-tb-col">
                                                 @if($product->status)
                                                     <form action="{{ route('product.active', $product->id) }}" method="post">
@@ -234,7 +246,7 @@
                                                                 <a href="{{route ('product.edit', $product->id) }}"><em class="icon ni ni-repeat"></em>
                                                                     <span>Edit Products</span></a>
                                                             </li>
-                                                            
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -246,7 +258,7 @@
                                     </div><!-- .nk-tb-list -->
                                 </div><!-- .card-inner -->
                                 <div class="card-inner">
-                                    
+
                                 </div><!-- .card-inner -->
                             </div><!-- .card-inner-group -->
                         </div><!-- .card -->
@@ -269,9 +281,17 @@
 
         $("#category_name").select2({
         });
-        
+
         $("#product_name").select2({
         });
+
+        function printDiv() {
+            var printContents = document.getElementById("printArea").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
 </script>
 
 @endsection
