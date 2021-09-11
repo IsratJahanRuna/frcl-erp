@@ -38,19 +38,19 @@
                         <div class="col-lg-4">
                             <div class="form-group d-flex">
                                 <label class="form-label fw-bold mr-3">ডিভিশনঃ</label>
-                                <span class="fw-medium">{{ $distributor->distributor_division }}</span>
+                                <span class="fw-medium"> {{ Devfaysal\BangladeshGeocode\Models\Division::find($distributor->distributor_division)->name }}</span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group d-flex">
                                 <label class="form-label fw-bold mr-3">জোনঃ</label>
-                                <span class="fw-medium">{{ $distributor->distributor_zone }}</span>
+                                <span class="fw-medium"> {{ Devfaysal\BangladeshGeocode\Models\District::find($distributor->distributor_zone)->name }}</span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group d-flex">
                                 <label class="form-label fw-bold mr-3">বেসঃ</label>
-                                <span class="fw-medium">{{ $distributor->distributor_base }}</span>
+                                <span class="fw-medium"> {{ Devfaysal\BangladeshGeocode\Models\Upazila::find($distributor->distributor_base)->name }}</span>
                             </div>
                         </div>
                     </div>
@@ -180,14 +180,33 @@
                             <tbody>
                                 @php
                                     $details=json_decode($distributor->partnership_distibutor_name,  true);
+                                    $details1=json_decode($distributor->partnership_distibutor_address,  true);
+                                    $details2=json_decode($distributor->partnership_distibutor_percentage,  true);
+                                    $n = 0;
                                 @endphp
-                                {{-- <td>1</td>
-                                <td><input type="text" name="partnership_distibutor_name"
+                                
+                                @foreach($details as $key=>$value)
+                                <tr>
+                                <td>@php echo ++$n; @endphp</td>
+                                <td><input type="text" value="{{$value}}"
                                         class="form-control"></td>
-                                <td><input type="text" name="partnership_distibutor_address"
-                                        class="form-control"> </td>
-                                <td> <input type="text" name="partnership_distibutor_percentage"
-                                        class="form-control"></td> --}}
+                                
+                                
+                                @endforeach
+                               
+                                @foreach($details1 as $key=>$value)
+                                
+                                <td><input type="text" value="{{$value}}"
+                                        class="form-control"></td>
+                                   
+                                @endforeach
+                                @foreach($details2 as $key=>$value)
+                          
+                                <td> <input type="text" value="{{$value}}"
+                                        class="form-control"></td>
+                                </tr>   
+                                @endforeach
+                            
                             </tbody>
                         </table>
                     </div>
@@ -204,14 +223,22 @@
                                     <th class="p-3">মেয়াদকাল</th>
                                 </tr>
                             </thead>
+                            @php
+                                $details=json_decode($distributor->before_electrical_distributorship_name,  true);
+                                $details1=json_decode($distributor->before_electrical_distributorship_duration,  true);
+                            @endphp
                             <tbody id="toggle-row-1">
                                 <td>1</td>
+                                {{-- @foreach($details as $key=>$value)
                                 <td><input type="text"
-                                        name="before_electrical_distributorship_name"
+                                        value="{{$value}}"
                                         class="from-control form-control"></td>
+                                        @endforeach
+                                        @foreach($details1 as $key=>$value)
                                 <td><input type="text"
-                                        name="before_electrical_distributorship_duration"
+                                    value="{{$value}}"
                                         class="from-control form-control"> </td>
+                                        @endforeach --}}
                             </tbody>
                         </table>
                         <button type="button" id="add-1" class="btn btn-white mt-3">+ আরো যুক্ত

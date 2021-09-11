@@ -45,7 +45,7 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="full-name" >Category <span style="top:-5px; color:red;">*</span></label reqired>
                                                 <div class="form-control-wrap">
-                                                    <input type="text" name="name" class="form-control" id="fv-email" placeholder="Category Name">
+                                                    <input type="text" name="name" class="form-control" id="fv-email" placeholder="Category Name" required>
                                                 </div>
                                             </div>
 
@@ -198,7 +198,7 @@
                                                             <li><a href="#modalLarge{{$category->id}}" data-toggle="modal"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
                                                             <li><a href="#UpdateModal{{$category->id}}" data-toggle="modal"><em class="icon ni ni-repeat"></em><span>Edit Category</span></a></li>
                                                             <!-- <li><a href="#DeleteModal{{$category->id}}" data-toggle="modal"><em class="icon ni ni-activity-round"></em><span>Delete</span></a></li> -->
-                                                            <li><a href="{{route('category.single.print' , $category->id)}}"><em class="icon ni ni-repeat"></em><span>Print Category</span></a></li>
+                                                            {{-- <li><a href="{{route('category.single.print' , $category->id)}}"><em class="icon ni ni-repeat"></em><span>Print Category</span></a></li> --}}
                                                                 
                                                             </ul>
                                                         </div>
@@ -243,7 +243,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer bg-light">
-                                                    <span class="sub-text"><button class="btn btn-secondary"><em class="icon ni ni-files">Print</em></button></span>
+                                                    {{-- <span class="sub-text"><button class="btn btn-secondary"><em class="icon ni ni-files">Print</em></button></span> --}}
                                                 </div>
                                             </div>
                                         </div>

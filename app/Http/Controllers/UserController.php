@@ -97,6 +97,16 @@ class UserController extends Controller
     public function list()
     {
         $users = User::orderBy('id', 'desc')->get();
+        re    public function view($id){
+        return view('admin.layout.user.view', [
+            'user' => User::findOrFail($id)
+        ]);
+    }
+
+
+    public function list()
+    {
+        $users = User::orderBy('id', 'desc')->get();
         return view ('admin.layout.user.userList', compact('users'));
     }
 
@@ -303,8 +313,49 @@ class UserController extends Controller
         }
         else
         {
+            return redi    public function updateZone(Request $request , $id)
+    {
+        $d_id = District::where('id', $id)->first();
+        // dd($d_id);
+        District::where('id',$id)->update([
+			'name'=>$request->name,
+            'bn_name'=>$request->bn_name,
+        ]);
+
+        Toastr::success('District Updated Successfully', 'Title');
+        return redirect()->route('user.zone', $d_id->division_id);
+    }
+    public function updateBase(Request $request , $id)
+    {
+        $u_id = Upazila::where('id', $id)->first();
+        // dd($d_id);
+        Upazila::where('id',$id)->update([
+			'name'=>$request->name,
+            'bn_name'=>$request->bn_name,
+        ]);
+
+        Toastr::success('District Updated Successfully', 'Title');
+        return redirect()->route('user.base', $u_id->district_id);
+    }
+
+    public function user_password_update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+
+            $user->save();
+            return redirect()->back()->with('success', 'Password Updated successfully');
+        }
+        else
+        {
             return redirect()->back()->with('error', 'Please add User Complete Information first.');
         }
     }
 
-}
+// plete Information first.');
+        }
+    }
+
+
